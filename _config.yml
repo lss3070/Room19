@@ -2,14 +2,16 @@ remote_theme : Huxpro / huxpro.github.io
 
 
 # Site settings
-title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+title: "섭섭이의 19호실"
+SEOTitle: 19호실 | 섭섭이
 header-img: img/home-bg.jpg
 email: lss3070@kakaco.com
 description: "섭섭이의 19호실"
 keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, 前端, 设计"
 url: "https://lss3070.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+pageinate:10
+
 
 # Publish posts or collection documents with a future date.
 future: true
