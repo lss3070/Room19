@@ -1,11 +1,10 @@
 ---
-layout:post
-title: "2020.09.08 second test"
-subtitle :"start"
-date: 2017-10-20 08:26:28 -0400
-auther:"Hux"
-header-img:"img/post-bg-2015.jpg"
-catalog:true
+title: "2020.09.08 second"
+subtitle: "second"
+layout: post
+auther: "Hux"
+header-style: text
+catalog: true
 tags:
     -Life
     -Meat
@@ -13,8 +12,4 @@ tags:
 
 Second Test...
 
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
 
