@@ -4,8 +4,7 @@ subtitle: "start"
 layout: post
 auther: "Hux"
 header-style: text
-header-img:"img/post-bg-2015.jpg"
-catalog:true
+catalog: true
 tags:
     -Life
     -Meat
