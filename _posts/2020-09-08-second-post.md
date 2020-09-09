@@ -6,7 +6,8 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-    -Algorithm
+    -Life
+    -Meat
 ---
 
 Second Test...
