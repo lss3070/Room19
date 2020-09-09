@@ -6,8 +6,8 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-    -Life
-    -Meat
+    -Algorithm
+    
 ---
 
 Hellow World!
