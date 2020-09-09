@@ -1,8 +1,9 @@
 remote_theme : Huxpro / huxpro.github.io
 
 
+
 # Site settings
-title: "섭섭이의 19호실"
+title: "Sub's Room 19"
 SEOTitle: 19호실 | 섭섭이
 
 header-img: img/home-bg.png
@@ -84,7 +85,7 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "For the next quantum leap<br>离开世界之前，一切都是过程"
+sidebar-about-description: "프론트 엔드 개발자"
 sidebar-avatar: /img/avatar-hux-ny.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
