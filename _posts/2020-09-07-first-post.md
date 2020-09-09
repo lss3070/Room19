@@ -1,7 +1,7 @@
 ---
 title: "2020.09.07 firsts"
 subtitle: "start"
-layout: post
+layout: default
 auther: "Hux"
 header-style: text
 catalog: true
