@@ -20,12 +20,12 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
+weibo_username:     false
+zhihu_username:     false
 github_username:    lss3070
-twitter_username:   huxpro
-#facebook_username:  huxpro
-#linkedin_username:  firstname-lastname-idxxxx
+twitter_username:   false
+facebook_username:  false
+linkedin_username:  firstname-lastname-idxxxx
 
 
 
