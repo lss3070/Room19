@@ -1,7 +1,7 @@
 ---
 title: "2020.09.08 second"
 subtitle: "second"
-layout: default
+layout: post
 auther: "Hux"
 header-style: text
 catalog: true
