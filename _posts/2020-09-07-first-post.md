@@ -4,7 +4,7 @@ subtitle: "start"
 layout: post
 auther: "Hux"
 header-style: text
-comment:true
+comment: true
 catalog: true
 tags:
     -Algorithm
