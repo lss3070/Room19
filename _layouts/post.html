@@ -1,5 +1,6 @@
 ---
 layout: default
+comments : true
 ---
 
 <!-- Image to hack wechat -->
@@ -50,9 +51,11 @@ layout: default
 
                 {% if site.disqus_username %}
                 <!-- disqus 评论框 start -->
-                <div class="comment">
+
+                {% include disqus_comment.html} %
+                <!-- <div class="comment">
                     <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
+                </div> -->
                 <!-- disqus 评论框 end -->
                 {% endif %}
 
