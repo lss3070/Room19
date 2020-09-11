@@ -1,5 +1,5 @@
 ---
-title: "[프로그래머스/JavaScript] 네트워크"
+title: "[프로그래머스/JavaScript] 프린터"
 subtitle: "알고리즘 풀이"
 layout: post
 auther: "Hux"
@@ -41,7 +41,10 @@ priorities          |    location    |   return
 
 풀이과정
 -------
-...
+```cpp
+
+
+```
 
 
 출처
