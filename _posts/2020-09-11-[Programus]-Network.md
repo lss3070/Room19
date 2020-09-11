@@ -14,11 +14,9 @@ tags:
 -------
 일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.
 
-```cpp
 1. 인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다.
 2. 나머지 인쇄 대기목록에서 J보다 중요도가 높은 문서가 한 개라도 존재하면 J를 대기목록의 가장 마지막에 넣습니다.
 3. 그렇지 않으면 J를 인쇄합니다.
-```
 
 예를 들어, 4개의 문서(A, B, C, D)가 순서대로 인쇄 대기목록에 있고 중요도가 2 1 3 2 라면 C D A B 순으로 인쇄하게 됩니다.
 
@@ -41,8 +39,32 @@ priorities          |    location    |   return
 
 풀이과정
 -------
-```cpp
 
+```cpp
+function solution(priorities, location) {
+    
+    let result=0;
+    let max;
+    let i=0;
+    let sortArray=[];
+        priorities.forEach(element => {
+        sortArray.push([element,i]);
+        i++
+    });
+    
+    while(true){
+    let max= sortArray.reduce(function(a,b){
+        return a>b[0]?a:b[0];
+    },0)
+       if(sortArray[0][0]==max){
+        result++
+        if(sortArray.shift()[1]==location) break;
+       }else{
+        sortArray.push(sortArray.shift()); 
+       }
+   }
+    return result;
+}
 
 ```
 
