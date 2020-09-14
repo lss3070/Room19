@@ -12,67 +12,83 @@ tags:
 
 문제 설명
 -------
-일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.
+스트리밍 사이트에서 장르 별로 가장 많이 재생된 노래를 두 개씩 모아 베스트 앨범을 출시하려 합니다. 노래는 고유 번호로 구분하며, 노래를 수록하는 기준은 다음과 같습니다.
 
-1. 인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다.
-2. 나머지 인쇄 대기목록에서 J보다 중요도가 높은 문서가 한 개라도 존재하면 J를 대기목록의 가장 마지막에 넣습니다.
-3. 그렇지 않으면 J를 인쇄합니다.
+1.속한 노래가 많이 재생된 장르를 먼저 수록합니다.
+2.장르 내에서 많이 재생된 노래를 먼저 수록합니다.
+3.장르 내에서 재생 횟수가 같은 노래 중에서는 고유 번호가 낮은 노래를 먼저 수록합니다.
 
-예를 들어, 4개의 문서(A, B, C, D)가 순서대로 인쇄 대기목록에 있고 중요도가 2 1 3 2 라면 C D A B 순으로 인쇄하게 됩니다.
-
-내가 인쇄를 요청한 문서가 몇 번째로 인쇄되는지 알고 싶습니다. 위의 예에서 C는 1번째로, A는 3번째로 인쇄됩니다.
-
-현재 대기목록에 있는 문서의 중요도가 순서대로 담긴 배열 priorities와 내가 인쇄를 요청한 문서가 현재 대기목록의 어떤 위치에 있는지를 알려주는 location이 매개변수로 주어질 때, 내가 인쇄를 요청한 문서가 몇 번째로 인쇄되는지 return 하도록 solution 함수를 작성해주세요.
+노래의 장르를 나타내는 문자열 배열 genres와 노래별 재생 횟수를 나타내는 정수 배열 plays가 주어질 때, 베스트 앨범에 들어갈 노래의 고유 번호를 순서대로 return 하도록 solution 함수를 완성하세요.
 
 제한사항
-현재 대기목록에는 1개 이상 100개 이하의 문서가 있습니다.
-인쇄 작업의 중요도는 1~9로 표현하며 숫자가 클수록 중요하다는 뜻입니다.
-location은 0 이상 (현재 대기목록에 있는 작업 수 - 1) 이하의 값을 가지며 대기목록의 가장 앞에 있으면 0, 두 번째에 있으면 1로 표현합니다.
+·genres[i]는 고유번호가 i인 노래의 장르입니다.
+·plays[i]는 고유번호가 i인 노래가 재생된 횟수입니다.
+·genres와 plays의 길이는 같으며, 이는 1 이상 10,000 이하입니다.
+·장르 종류는 100개 미만입니다.
+·장르에 속한 곡이 하나라면, 하나의 곡만 선택합니다.
+·모든 장르는 재생된 횟수가 다릅니다.
 
 입출력 예
 
-priorities          |    location    |   return
-----------          |    --------    |   ------
-[2, 1, 3, 2]        |	    2	     |      1
-[1, 1, 9, 1, 1, 1]  |	    0	     |      5
+genres                                          |    plays                        |   return
+----------                                      |    --------                     |   ------
+["classic", "pop", "classic", "classic", "pop"] |	 [500, 600, 150, 800, 2500]	  | [4, 1, 3, 0]
+
 
 
 풀이과정
 -------
 
 ```cpp
-function solution(priorities, location) {
+function solution(genres, plays) {
+    var answer = [];
+    let hashtable = new Map();
     
-    let result=0;
-    let max;
-    let i=0;
-    let sortArray=[];
-        priorities.forEach(element => {
-        sortArray.push([element,i]);
-        i++
+      for(let i=0; i<genres.length;i++){
+        let value =hashtable.get(genres[i])
+        if(value!=null) hashtable.set(genres[i],[[plays[i],i], ...value])
+        else hashtable.set(genres[i],[[plays[i],i]]);
+    }
+    
+    hashtable.forEach((value,key)=>{
+        value= value.sort((a,b)=>{
+           if(a[0]>=b[0]) return a[0]==b[0]? a[1]-b[1]:-1
+           else return 1;
+        });
     });
+
+    hashtable = new Map([...hashtable].sort((a,b)=>{
+        let aMax= a[1].reduce((pre,cur)=>{return pre+cur[0]},0);
+        let bMax= b[1].reduce((pre,cur)=>{return pre+cur[0]},0);
+        return aMax>bMax? -1:1
+    }))
     
-    while(true){
-    let max= sortArray.reduce(function(a,b){
-        return a>b[0]?a:b[0];
-    },0)
-       if(sortArray[0][0]==max){
-        result++
-        if(sortArray.shift()[1]==location) break;
-       }else{
-        sortArray.push(sortArray.shift()); 
-       }
-   }
-    return result;
+    hashtable.forEach((value,key)=>{
+        if(value.length>1) answer.push(value[0][1],value[1][1]);
+        else if(value.length==1) answer.push(value[0][1]);
+    })
+    return answer;
 }
 ```
-priorities의 배열을 순번을 지정해서 sortArray 변수에 저장한 후
-priorities 배열을 순서대로 돌려 최대값을 찾아낸 후
-location의 값과 같으면 루프문을 종료 시킵니다.
-내일 수정하자...
+
+
+
+1. genres값들을 기준으로 plays값들을 HashTable 형식으로 정리해준다. HashTable value값은 배열 형식으로 저장시킨다.
+
+2. HashTable 내부 value배열의 값들은 비교할수 있게끔 내림차순으로 정렬시켜주며 동일한 값들은 순번을 기준으로 오름차순 정렬을 한다.
+
+3. 정렬되어진 HashTable을 value배열 값들의 합계 순으로 재정렬 해준다.
+
+4. HashTable을 루프문으로 돌려 인덱스 값들을 결과값에 할당시켜준다.
+
+
+처음에 막무가내로 풀었다가 코드가 너무 길어져서 순서대로 정리하며 다시 풀었나갔다 ㅠ.
+초반에 장르 2개 노래 2개라는 것에 꽂혀 장르가 속한 곡이 하나일때를 생각을 못하고 풀어버려
+계속 해맸다....이것만 아니였으면 금방 풀었을건데 문제 풀때 꼼꼼히 읽도록 습관화 해야될 것 같다.
+문제를 풀때 장르에 속한 곡이 하나라는 것과 문제 설명대로 천천히 신경쓰면서 풀면 잘 풀수 있는 문제인것 같다.
 
 
 
 출처
 ---
-https://programmers.co.kr/learn/courses/30/lessons/42587?language=javascript
+https://programmers.co.kr/learn/courses/30/lessons/42579?language=javascript
