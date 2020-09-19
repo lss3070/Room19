@@ -86,7 +86,7 @@ ga_domain: huangxuan.me
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "#Web #FrontEnd Still Learn"
-sidebar-avatar: /img/avatar_2.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar_1.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
