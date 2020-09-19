@@ -113,9 +113,9 @@ friends: [
     #     title: "Su",
     #     href: "http://su.gallery/"
     # },{
-        title: "乱序",
-        href: "http://mida.re/"
-    },
+    #     title: "乱序",
+    #     href: "http://mida.re/"
+    # },
     # {
     #     title: "Sherry Wu",
     #     href: "https://xuechundesign.github.io"
