@@ -66,10 +66,7 @@ function solution(priorities, location) {
     return result;
 }
 ```
-priorities의 배열을 순번을 지정해서 sortArray 변수에 저장한 후
-priorities 배열을 순서대로 돌려 최대값을 찾아낸 후
-location의 값과 같으면 루프문을 종료 시킵니다.
-내일 수정하자...
+
 
 
 
