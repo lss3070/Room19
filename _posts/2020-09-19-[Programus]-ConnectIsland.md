@@ -37,7 +37,7 @@ n     |    costs                       |   return
 -------
 
 ```cpp
-function solution(n, costs) {
+ function solution(n, costs) {
     var answer = 0;
     costs.sort((a,b)=>{
 return a[2] - b[2]
@@ -51,22 +51,23 @@ costs.forEach((element)=>{
 
 costs.forEach((costElement)=>{
      if(hashMap.get(costElement[0])!=hashMap.get(costElement[1])){
-        let big;
-        let small;
+        let hKey;
+        let hValue;
         
         if(hashMap.get(costElement[0])<hashMap.get(costElement[1])){
-            big= costElement[1];
-            small=costElement[0];
+            hKey= costElement[1];
+            hValue=costElement[0];
             
         }else{
-            big=costElement[0];
-            small= costElement[1];
+            hKey=costElement[0];
+            hValue= costElement[1];
         }
-        let checkvalue= hashMap.get(big);
+        let checkvalue= hashMap.get(hKey);
         hashMap.forEach((value,key)=>{
-            checkvalue ==value? hashMap.set(key,hashMap.get(small)):""
+            checkvalue ==value? hashMap.set(key,hashMap.get(hValue)):""
            });
-           hashMap.set(big,hashMap.get(small))
+         
+           hashMap.set(hKey,hashMap.get(hValue))
 
         answer+=costElement[2]
     }
@@ -75,12 +76,27 @@ costs.forEach((costElement)=>{
 }
 ```
 
+크루스칼 알고리즘을 이용하여 푸는 문제이다. 탐욕적인 방법(Greedy Method)을 이용하여 네트워크의 모든 정점을 최소 비용으로
+연결하는 최적해답을 찾는 방법이다.
 
 
-오후에 볼일보고와서 쓰자
+1. costs의 배열을 두섬을 연결하는 값을 기준으로 오름차순 정렬을 시켜준다.
+
+2. 노드 값을 기준으로 HashTable을 만들어준다. (각 노드가 HashTable의 key값이며, 해당 노드의 연결된 최상의 노드의 값이
+value값이다.)
+
+3. costs배열의 루프문을 돌려 각 노드의 최상위 노드의 값이 같은지 확인하여준다.(각 노드의 최상위 값이 같을 경우 사이클이 형성되어 넣을 수 없음)
+
+4. 최상위 노드의 값이 같이 않는 경우 costElement의 두개값 중에 큰값을 hKey, 작은 값을 hValue로 지정한다
+ 
+5. HashTable을 돌려 4번항목에서 지정한 hKey값이 기존 최상위 노드의 값보다 작은 경우 hValue를 최상위 노드의 값으로 지정해준다.
+
+6. HashTable에 해당 hKey값과 hValue값을 넣어주고 answer 변수에 비용을 더해준다.
+
 
 참고
 ---
+https://ko.wikipedia.org/wiki/%ED%81%AC%EB%9F%AC%EC%8A%A4%EC%BB%AC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
 
 출처
 ---
