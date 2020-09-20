@@ -1,5 +1,5 @@
 ---
-title: "[프로그래머스/JavaScript] 디스크 컨트롤러"
+title: "[프로그래머스/JavaScript] 디스크 컨트롤러(작성중)"
 subtitle: "알고리즘 풀이"
 layout: post
 auther: "Hux"
