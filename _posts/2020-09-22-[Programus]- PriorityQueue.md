@@ -64,13 +64,14 @@ function solution(operations) {
         }
     });
        if(answer==0) return [0,0];
-    else return [Math.max.apply(null,answer),Math.min.apply(null,answer)];
+    else return [Math.max.apply(null,answer),
+    Math.min.apply(null,answer)];
 
 }
 ```
+ 루프문을 돌려 먼저 I인지 D인지 확인한 후에 reduce를 통해 최대,최소값을 구하고 해당 값을 배열에서 제외시켜준다.
 
-
-
+Lv3문제치곤 알고리즘이 그리 복잡지 않아푸는데 오랜시간이 걸리지 않았다.
 
 
 
