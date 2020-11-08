@@ -6,9 +6,9 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-    -백준,
-    -DFS,
-    -BFS,
+    -백준
+    -DFS
+    -BFS
     -Algorithm
 ---
 
