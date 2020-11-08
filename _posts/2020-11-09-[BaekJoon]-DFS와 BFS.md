@@ -23,7 +23,7 @@ tags:
 
 입출력 예
 
-- ![Image Alt 텍스트]({{site.url}}/img/algorithm/DFS_and_BFS.png);
+- ![Image Alt 텍스트]({{site.url}}/img/algorithm/DFS_and_BFS.png)
 
 풀이과정
 -------
