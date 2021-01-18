@@ -121,7 +121,7 @@ chrome://extensions/로 이동하여 압축해제된 확장 프로그램을 로�
 실행시켜 주면 된다.
 
 chrome app 같은 경우 chrome://apps/에서 등록되어진 앱을 실행시켜주면 된다.
-
+.
 참고
 ---
 https://developer.chrome.com/extensions/getstarted
