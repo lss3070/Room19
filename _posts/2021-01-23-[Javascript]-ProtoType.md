@@ -19,7 +19,7 @@ tags:
 이 포스팅을 통해 프로토타입에 대해 정확하게 알고가는 계기가 되면 좋겠으며 다른 사람들에게도 도움이 되길 바랍니다.
 
 
-본문에서 ECMAScript에서 사용되는 PrototypeLink인[[Prototype]] 프로퍼티는 본문에서 __proto__로 명시하겠습니다.
+본문에서 ECMAScript에서 사용되는 PrototypeLink인[[Prototype]] 프로퍼티는 본문에서 **__proto__**로 명시하겠습니다.
 
 프로토타입 프로그래밍이란
 ---
@@ -30,13 +30,14 @@ tags:
 
 <center>(음... 이게 뭔소리래)</center>
 
+밑에서 하나하나 풀어서 알아보도록 하죠!
 
 
 __proto__와 prototype 프로퍼티
 ---
-일반적으로 리터럴 형식으로 생성한 자바스크립트의 객체의 구성요소로는__proto__라고 하는 객체원형에대한 연결을 나타내는 프로토타입 링크와 함수의 prototype이라는 프로토타입 객체가 존재한다.javascript에서 객체 생성시 생성된 객체는 프로토 타입의 링크가 생성된 함수의 프로토타입 객체를 참조하는 형태를 가지게 됩니다.
+일반적으로 리터럴 형식으로 생성한 자바스크립트의 객체의 구성요소로는**__proto__**라고 하는 객체원형에대한 연결을 나타내는 프로토타입 링크와 함수의 prototype이라는 프로토타입 객체가 존재한다.javascript에서 객체 생성시 생성된 객체는 프로토 타입의 링크가 생성된 함수의 프로토타입 객체를 참조하는 형태를 가지게 됩니다.
 자바스크립트의 모든 객체는 자신을 생성한 생성자 함수의 prototype프로퍼티가 가리키는 프로토타입객체를 부모 객체로 설정하는
-__proto__로 연결을 한다. __proto__는 또한 상속을 위해 사용이 된다.
+**__proto__**로 연결을 한다. **__proto__**는 또한 상속을 위해 사용이 된다.
 이 규칙을 적용해서 다음 코드를 살펴보자.
 
 
@@ -51,15 +52,15 @@ console.dir(cloneHuman);
 ```
 ![__proto__&prototype 예제]({{site.url}}/img/javascript/prototype/prototype_step3.png)
 
-여기서 Human 생성자 함수의 prototype프로퍼티는 Human.prototype와 연결되어 있고
-Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 __proto__로 연결되어있다.
+여기서 Human 생성자 함수의 **prototype 프로퍼티**는 Human.prototype와 연결되어 있고
+Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 **__proto__**로 연결되어있다.
 
-결국 Human 생성자의 prototype 프로퍼티나 cloneHuman 의 __proto__는 같은 프로토타입 객체를 가르키고 있게되는 것이며
+결국 Human 생성자의 **prototype 프로퍼티**나 cloneHuman의 **__proto__**는 같은 프로토타입 객체를 가르키고 있게되는 것이며
 자바스크립에서 객체를 생성하는건 생성자 함수의 역할이지만 생성된 객체의 실제 부모 역할을 하는건 생성자가 아닌
-생성자 prototype과 연결된 객체의 prototype객체이다.
+생성자 **prototype**과 연결된 객체의 **prototype객체**이다.
 
 이것은 마치 객체지향언어의 상속 개념과 같아 부모 객체의 프로퍼티를 자신의 것처럼 쓸 수 있으며 
-이러한 부모 객체를 prototype객체라고 부릅니다.
+이러한 부모 객체를 **prototype객체**라고 부릅니다.
 
 이를 바탕으로 자바스크립트에서 상속을 구현할 수 있습니다.
 
@@ -68,7 +69,7 @@ Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 
 ---
 자바스크크립에선 부모역할을 하는 프로토 타입의 객체를 기존 객체지향언어에서의 상속받은 자식클래스가 부모클래스의 메서드에 접근하는것 처럼
 부모 객체에 접근이 가능하다. 이것을 가능케 하는것이 바로 프로토타입 체이닝이며 생성된 객체 형식에 따라 사용하는 방식이 조금 다르다.
-하지만 '모든 객체는 자신을 생성한 생성자 함수의 prototype프로퍼티를 가르키는 객체를 자신의 프로토타입 객체로 취급한다'
+하지만 '모든 객체는 자신을 생성한 생성자 함수의 **prototype 프로퍼티**를 가르키는 객체를 자신의 프로토타입 객체로 취급한다'
 라는 프로토타입 기본원칙은 같기 때문에 큰차이는 없다.
 객체 형식에 따라 리터럴 방식의 체이닝과 생성자 함수형식의 체이닝이 존재한다.
 먼저 리터럴 방식의 prototype 체이닝을 알아보자.
@@ -88,14 +89,14 @@ console.log(human);
 
 위의 예제는 리터럴 형식으로 human객체를 생성하고 human객체의 메서드를 출력한 것입니다.
 여기서 human.prototype을 이용해서 toStirng 함수를 추가하지도 않았는데 왜 작동하는것일까요...
-그 이유는 바로 human객체의 __proto__ 에 이미 정의가 되어있으며 human 객체의 부모 객체에서 상속을 받아
+그 이유는 바로 human객체의 **__proto__**에 이미 정의가 되어있으며 human 객체의 부모 객체에서 상속을 받아
 toString 메서드를 호출 하였기 때문이다.
 더 자세히 알아보기 위해 아래 그림을 참고하자
 
  ![리터럴예제]({{site.url}}/img/javascript/prototype/prototype_step1.png)
 
-위의 실행결과를 보면 알 수 있듯이 age,name 프로퍼티 이외에도 __proto__라는 프로퍼티가 있는 것을 알 수 있다.
-여기서 __proto__에 정의 되어있는것은 Object prototype객체이며 human객체의 부모객체이다. __proto__를 통해 
+위의 실행결과를 보면 알 수 있듯이 age,name 프로퍼티 이외에도 **__proto__**라는 프로퍼티가 있는 것을 알 수 있다.
+여기서 **__proto__**에 정의 되어있는것은 Object prototype객체이며 human객체의 부모객체이다. **__proto__**를 통해 
 부모 객체와 연결되어 있으며 Object prototype에는 toString()이라는 메서드가 명시되어 있기 때문에 Object prototype 객체를
 상속받은 human객체는 human.toString()메서드를 호출해도 에러가 나지 않는것이다.
 
@@ -148,7 +149,7 @@ cloneHuman.hasOwnProperty()메서드를 호출할때 cloneHuman에 hasOwnPropert
 
 
 위의 코드를 그림으로 표현하면 다음과 같다.
-- ![함수 형식의 prototype상속]({{site.url}}/img/javascript/prototype/prototype_step4.png)
+ ![함수 형식의 prototype상속]({{site.url}}/img/javascript/prototype/prototype_step4.png)
 
 
 
@@ -164,8 +165,6 @@ cloneHuman.hasOwnProperty()메서드를 호출할때 cloneHuman에 hasOwnPropert
 
 참고 
 ---
-인사이드 자바스크립트 
-
+인사이드 자바스크립트 - 市고현준,송형주
 https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85
-
 https://poiemaweb.com/js-prototype
