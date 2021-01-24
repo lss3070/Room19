@@ -166,5 +166,5 @@ cloneHuman.hasOwnProperty()메서드를 호출할때 cloneHuman에 hasOwnPropert
 참고 
 ---
 인사이드 자바스크립트 - 市고현준,송형주
-![https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85]https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85
-![https://poiemaweb.com/js-prototype]https://poiemaweb.com/js-prototype
+![https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85](https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85)
+![https://poiemaweb.com/js-prototype](https://poiemaweb.com/js-prototype)
