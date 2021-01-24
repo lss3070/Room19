@@ -15,9 +15,9 @@ react-create-app을 이용하여 React를 셋팅하고 실행하려는 순간...
 
 오류명 
 ----
-```
+```Shell
 If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
- That will permanently disable this message but you might encounter other issues.
+That will permanently disable this message but you might encounter other issues.
 ```
 
 해결
