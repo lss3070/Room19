@@ -27,7 +27,8 @@ tags:
 
 
 - ![멍청짤]({{site.url}}/img/meme/멍청짤.png)
-(음... 이게 뭔소리래)
+
+<center>(음... 이게 뭔소리래)</center>
 
 
 
