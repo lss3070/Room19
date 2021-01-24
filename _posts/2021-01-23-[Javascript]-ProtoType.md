@@ -26,7 +26,7 @@ tags:
 객체의 원형인 프로토타입을 이용하여 새로운 객체를 만들어내는 프로그래밍 기법이다. 이렇게 만들어진 객체 역시 자기자신의 프로토타입을 갖는다. 이 새로운 객체의 원형을 이용하면 또 다른 새로운 객체를 만들어 낼수도 있으며 이런 구조로 객체를 확장하는 방식을 프로토타입 기반 프로그래밍이라고 한다.
 
 
-- ![멍청짤]({{site.url}}/img/meme/멍청짤.png)
+ ![멍청짤]({{site.url}}/img/meme/멍청짤.png)
 
 <center>(음... 이게 뭔소리래)</center>
 
@@ -49,7 +49,7 @@ console.dir(Human);
 console.dir(cloneHuman);
 
 ```
-- ![__proto__&prototype 예제]({{site.url}}/img/javascript/prototype/prototpye_step3.png)
+![__proto__&prototype 예제]({{site.url}}/img/javascript/prototype/prototpye_step3.png)
 
 여기서 Human 생성자 함수의 prototype프로퍼티는 Human.prototype와 연결되어 있고
 Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 __proto__로 연결되어있다.
@@ -92,7 +92,7 @@ console.log(human);
 toString 메서드를 호출 하였기 때문이다.
 더 자세히 알아보기 위해 아래 그림을 참고하자
 
-- ![리터럴예제]({{site.url}}/img/javascript/prototype/prototpye_step1.png)
+ ![리터럴예제]({{site.url}}/img/javascript/prototype/prototpye_step1.png)
 
 위의 실행결과를 보면 알 수 있듯이 age,name 프로퍼티 이외에도 __proto__라는 프로퍼티가 있는 것을 알 수 있다.
 여기서 __proto__에 정의 되어있는것은 Object prototype객체이며 human객체의 부모객체이다. __proto__를 통해 
@@ -100,7 +100,7 @@ toString 메서드를 호출 하였기 때문이다.
 상속받은 human객체는 human.toString()메서드를 호출해도 에러가 나지 않는것이다.
 
 위의 관게를 도식화 하면 이렇다.
-- ![리터럴예제]({{site.url}}/img/javascript/prototype/prototpye_step2.png)
+ ![리터럴예제]({{site.url}}/img/javascript/prototype/prototpye_step2.png)
 
 다음으로는 생성자 함수 prototype체이닝에 알아보자
 
