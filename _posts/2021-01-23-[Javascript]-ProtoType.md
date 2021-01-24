@@ -49,7 +49,7 @@ console.dir(Human);
 console.dir(cloneHuman);
 
 ```
-![__proto__&prototype 예제]({{site.url}}/img/javascript/prototype/prototpye_step3.png)
+![__proto__&prototype 예제]({{site.url}}/img/javascript/prototype/prototype_step3.png)
 
 여기서 Human 생성자 함수의 prototype프로퍼티는 Human.prototype와 연결되어 있고
 Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 __proto__로 연결되어있다.
@@ -92,7 +92,7 @@ console.log(human);
 toString 메서드를 호출 하였기 때문이다.
 더 자세히 알아보기 위해 아래 그림을 참고하자
 
- ![리터럴예제]({{site.url}}/img/javascript/prototype/prototpye_step1.png)
+ ![리터럴예제]({{site.url}}/img/javascript/prototype/prototype_step1.png)
 
 위의 실행결과를 보면 알 수 있듯이 age,name 프로퍼티 이외에도 __proto__라는 프로퍼티가 있는 것을 알 수 있다.
 여기서 __proto__에 정의 되어있는것은 Object prototype객체이며 human객체의 부모객체이다. __proto__를 통해 
@@ -100,7 +100,7 @@ toString 메서드를 호출 하였기 때문이다.
 상속받은 human객체는 human.toString()메서드를 호출해도 에러가 나지 않는것이다.
 
 위의 관게를 도식화 하면 이렇다.
- ![리터럴예제]({{site.url}}/img/javascript/prototype/prototpye_step2.png)
+ ![리터럴예제]({{site.url}}/img/javascript/prototype/prototype_step2.png)
 
 다음으로는 생성자 함수 prototype체이닝에 알아보자
 
@@ -148,7 +148,7 @@ cloneHuman.hasOwnProperty()메서드를 호출할때 cloneHuman에 hasOwnPropert
 
 
 위의 코드를 그림으로 표현하면 다음과 같다.
-- ![함수 형식의 prototype상속]({{site.url}}/img/javascript/prototype/prototpye_step4.png)
+- ![함수 형식의 prototype상속]({{site.url}}/img/javascript/prototype/prototype_step4.png)
 
 
 
