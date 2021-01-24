@@ -29,13 +29,12 @@ tags:
  ![멍청짤]({{site.url}}/img/meme/멍청짤.png)
 
 <center>(음... 이게 뭔소리래)</center>
-
-밑에서 하나하나 풀어서 알아보도록 하죠!
+<center>밑에서 하나하나 풀어서 알아보도록 하죠!</center>
 
 
 __proto__와 prototype 프로퍼티
 ---
-일반적으로 리터럴 형식으로 생성한 자바스크립트의 객체의 구성요소로는**__proto__**라고 하는 객체원형에대한 연결을 나타내는 프로토타입 링크와 함수의 prototype이라는 프로토타입 객체가 존재한다.javascript에서 객체 생성시 생성된 객체는 프로토 타입의 링크가 생성된 함수의 프로토타입 객체를 참조하는 형태를 가지게 됩니다.
+일반적으로 자바스크립트의 객체의 구성요소로는**__proto__**라고 하는 객체원형에대한 연결을 나타내는 프로토타입 링크와 함수를 나타내는 prototype이라는 프로토타입 객체가 존재한다.javascript에서 객체 생성시 생성된 객체는 프로토 타입의 링크가 생성된 함수의 프로토타입 객체를 참조하는 형태를 가지게 됩니다.
 자바스크립트의 모든 객체는 자신을 생성한 생성자 함수의 prototype프로퍼티가 가리키는 프로토타입객체를 부모 객체로 설정하는
 **__proto__**로 연결을 한다. **__proto__**는 또한 상속을 위해 사용이 된다.
 이 규칙을 적용해서 다음 코드를 살펴보자.
@@ -96,9 +95,9 @@ toString 메서드를 호출 하였기 때문이다.
  ![리터럴예제]({{site.url}}/img/javascript/prototype/prototype_step1.png)
 
 위의 실행결과를 보면 알 수 있듯이 age,name 프로퍼티 이외에도 **__proto__**라는 프로퍼티가 있는 것을 알 수 있다.
-여기서 **__proto__**에 정의 되어있는것은 Object prototype객체이며 human객체의 부모객체이다. **__proto__**를 통해 
-부모 객체와 연결되어 있으며 Object prototype에는 toString()이라는 메서드가 명시되어 있기 때문에 Object prototype 객체를
-상속받은 human객체는 human.toString()메서드를 호출해도 에러가 나지 않는것이다.
+여기서 **__proto__**에 정의 되어있는것은 Object prototype객체이며 human객체의 부모객체이다.
+(Object는 자바스크립트에서 기본적으로 제공되는 함수입니다!)
+ **__proto__**를 통해 부모 객체와 연결되어 있으며 Object prototype에는 toString()이라는 메서드가 명시되어 있기 때문에 Object prototype 객체를 상속받은 human객체는 human.toString()메서드를 호출해도 에러가 나지 않는것이다.
 
 위의 관게를 도식화 하면 이렇다.
  ![리터럴예제]({{site.url}}/img/javascript/prototype/prototype_step2.png)
