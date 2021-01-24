@@ -133,14 +133,15 @@ console.dir(Human.prototype.nameRepetition());//result : android     ···④
 ```
 
 위 예제를 보시면 cloneHuman 객체의 생성자는 Human함수이며 따라서 위에서 정의한 바와 같이 생성자 함수 객체의 
-prototype(Human.prototype)프로퍼티가 가리키는 객체가 된다.
+prototype(Human.prototype)프로퍼티가 가리키는 객체가 됩니다.
 
 cloneHuman.hasOwnProperty()메서드를 호출할때 cloneHuman에 hasOwnProperty란 메서드를 정의하지 않았기 때문에
 프로토타입 체이닝으로 cloneHuman에과 연결된 부모객체중에서 hasOwnProperty메서드를 찾는다. 부모인 Human.prototype객체에는
-없지만 Human객체와 또 연결된 Object.prototype객체에서 찾는다. Object.prototype에는 hasOwnProperty가 정의가 되어있기 때문에
-정상적으로 cloneHuman.hasOwnProperty('name')은 true 값을 출력한다.
-따라서 ①번줄에서 정의한 testMethod도 위에 설명한 바와 같이 Object.prototype객체에서 상속을 받아 cloneHuman.testMethod()에도 ②번줄
-잘 작동한다.
+없지만 Human객체와 또 연결된 Object.prototype객체에서 찾는다. 
+
+Object.prototype에는 hasOwnProperty가 정의가 되어있기 때문에 정상적으로 cloneHuman.hasOwnProperty('name')은 true 값을 출력한다.
+
+따라서 ①번줄에서 정의한 testMethod도 위에 설명한 바와 같이 Object.prototype객체에서 상속을 받아 cloneHuman.testMethod()가 있는②번줄 잘 작동한다.
 
 ④번줄의 Human.prototype.nameRepetition()은 prototype 체이닝이 아니라 바로 Human.prototype 객체에 접근하여 값을 호출한다.
 이 경우에는 nameRepetition메서드의 반환되는 this.name값은 ③줄에서 bind된 android값이다. 여기서 알수 있는것은 prototype으로 this 객체에
