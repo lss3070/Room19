@@ -13,8 +13,10 @@ tags:
 자바스크립트의 프로토타입을 처음 접한건 상속을 위해 prototype만을 알아보고 급하게 구현했던 걸로 기억합니다.
 그때 당시로는 그냥 prototype은 그냥 javascript객체 상속을 위해 쓰는 내부 함수구나 하고 넘어갔었고 또
 작년 기술면접을 준비하며 정의에 대해서 공부를 하며 달달 외우기만 했던것 같았다.
+
 이떄까지 뭔가를 위해서 급하게 달달 외운듯한 것 같아 온전히 내것이 되지않은듯해 이번 포스팅과 추후 포스팅을 통해
 스터디를 해보기로했다.
+
 이 포스팅을 통해 프로토타입에 대해 정확하게 알고가는 계기가 되면 좋겠으며 다른 사람들에게도 도움이 되길 바랍니다.
 
 
@@ -42,7 +44,7 @@ __proto__로 연결을 한다. __proto__는 또한 상속을 위해 사용이 �
 function Human(name){
     this.name=name
 }
-let cloneHuman= new Human('kim');
+let cloneHuman= new Human("kim");
 console.dir(Human);
 console.dir(cloneHuman);
 
@@ -68,12 +70,12 @@ Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 
 객체 형식에 따라 리터럴 방식의 체이닝과 생성자 함수형식의 체이닝이 존재한다.
 먼저 리터럴 방식의 prototype 체이닝을 알아보자.
 
-리터럴 방식으로의 prototype 체이닝
+리터럴 형식으로 생성된 객체의 prototype 체이닝
 ---
 
 ```cpp
 let human={
-    name:'kim',
+    name:"kim",
     age:30
 }
 human.toString();
@@ -100,7 +102,7 @@ toString 메서드를 호출 하였기 때문이다.
 다음으로는 생성자 함수 prototype체이닝에 알아보자
 
 
-생성자 함수로의 prototype 체이닝
+생성자 함수로 생성된 객체의 prototype 체이닝
 ---
 
 ```cpp
@@ -116,13 +118,13 @@ Object.prototype.testMethod=function(){//      ···①
     return "test..."
 }
 
-let cloneHuman = new Human('kim',30);  
-console.dir(cloneHuman.hasOwnProperty('name')); //result :  true
+let cloneHuman = new Human("kim",30);  
+console.dir(cloneHuman.hasOwnProperty("name")); //result :  true
 
 console.dir(cloneHuman.nameRepetition()) //result : kim
 console.dir(cloneHuman.testMethod()); //result : test...   ···②
 
-Human.prototype.name='android';//     ···③
+Human.prototype.name="android";//     ···③
 console.dir(Human.prototype.nameRepetition());//result : android     ···④
 ```
 
