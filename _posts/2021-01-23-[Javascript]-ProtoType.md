@@ -14,20 +14,19 @@ tags:
 그때 당시로는 그냥 prototype은 그냥 javascript객체 상속을 위해 쓰는 내부 함수구나 하고 넘어갔었고 또
 작년 기술면접을 준비하며 정의에 대해서 공부를 하며 달달 외우기만 했던것 같았다.
 
-이떄까지 뭔가를 위해서 급하게 달달 외운듯한 것 같아 온전히 내것이 되지않은듯해 이번 포스팅과 추후 포스팅을 통해
+이때까지 뭔가를 위해서 급하게 달달 외운듯한 것 같아 온전히 내것이 되지않은듯해 이번 포스팅과 추후 포스팅을 통해
 스터디를 해보기로했다.
-
 이 포스팅을 통해 프로토타입에 대해 정확하게 알고가는 계기가 되면 좋겠으며 다른 사람들에게도 도움이 되길 바랍니다.
 
 
-ECMAScript에서 사용되는 PrototypeLink인[[Prototype]] 프로퍼티는 본문에서 __proto__로 명시하겠습니다.
+본문에서 ECMAScript에서 사용되는 PrototypeLink인[[Prototype]] 프로퍼티는 본문에서 __proto__로 명시하겠습니다.
 
 프로토타입 프로그래밍이란
 ---
 객체의 원형인 프로토타입을 이용하여 새로운 객체를 만들어내는 프로그래밍 기법이다. 이렇게 만들어진 객체 역시 자기자신의 프로토타입을 갖는다. 이 새로운 객체의 원형을 이용하면 또 다른 새로운 객체를 만들어 낼수도 있으며 이런 구조로 객체를 확장하는 방식을 프로토타입 기반 프로그래밍이라고 한다.
 
 
-- ![멍청짤]({{site.url}}/img/javascript/prototype/멍청짤.png)
+- ![멍청짤]({{site.url}}/img/meme/멍청짤.png)
 (음... 이게 뭔소리래)
 
 
@@ -53,11 +52,14 @@ console.dir(cloneHuman);
 
 여기서 Human 생성자 함수의 prototype프로퍼티는 Human.prototype와 연결되어 있고
 Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 __proto__로 연결되어있다.
+
 결국 Human 생성자의 prototype 프로퍼티나 cloneHuman 의 __proto__는 같은 프로토타입 객체를 가르키고 있게되는 것이며
 자바스크립에서 객체를 생성하는건 생성자 함수의 역할이지만 생성된 객체의 실제 부모 역할을 하는건 생성자가 아닌
 생성자 prototype과 연결된 객체의 prototype객체이다.
+
 이것은 마치 객체지향언어의 상속 개념과 같아 부모 객체의 프로퍼티를 자신의 것처럼 쓸 수 있으며 
 이러한 부모 객체를 prototype객체라고 부릅니다.
+
 이를 바탕으로 자바스크립트에서 상속을 구현할 수 있습니다.
 
 
@@ -153,12 +155,16 @@ cloneHuman.hasOwnProperty()메서드를 호출할때 cloneHuman에 hasOwnPropert
 ---
 프로토타입 방식이 이게 설명해서 풀어내려고하면 어렵지 몇번 프로토타입을 이용한 상속을 구현하다보면
 그리 어렵지만은 않을것입니다.(프로그래밍은 선 반복숙달후 이해지 않겠어요?!)
+
 앞으로 javascript에 관한 기본 주제들을 가지고 포스팅할 예정입니다. 
+
 모두 즐거운 개발되시길 바라며 화이팅입니다!
 
 
 참고 
 ---
 인사이드 자바스크립트 
+
 https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Prototype%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85
+
 https://poiemaweb.com/js-prototype
