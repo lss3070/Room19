@@ -28,7 +28,7 @@ this 혼자 쓰인경우
 일반적인 바인딩
 ===
 
-```cpp
+```js
 var temp1 =10;
 console.log(this.temp1);
 
@@ -53,7 +53,7 @@ console.log(this.temp);// 10
 
 암시적(implicit) 바인딩
 ===
-```cpp
+```js
 var name ="kimchi"
 function temp() {
   console.log(this.name);
@@ -76,7 +76,7 @@ person.showInfo1();
 person.showInfo2();
 person.children.showInfo1();
 
-````
+```
 person.showinfo1()메서드를 호출하였을 때 name이 window객체에서 kimchi를 가르키지 않고
 person객체안에서의 kim을 가르키는걸 볼 수 있습니다. 
 그렇습니다 객체 안에서의 this는 해당 객체를 가르키고 따라서 temp의 this객체는 person 객체안에서 사용되었기 때문에 person객체 안에서의 name인 kim을 가르키게 됩니다.
@@ -97,7 +97,7 @@ apply,call,bind메서드를 이용하여 인자를 this로 만들어주는 기�
 call
 ---
 
-```cpp
+```js
 var a=1;
 function foo() {
     console.log(this.a);
@@ -110,7 +110,7 @@ foo.call(obj); // 2
 foo함수를 실행했을때 call메서드를 이용해서 실행을해주면 call의 인자인 obj객체가 this로 지정이 되기 때문에 a값은 전역객체로 선언된 1이 아니고 obj객체안의 2가 출력이 됩니다.
 
 
-```cpp
+```js
 function foo(temp,dummy){
     console.log(`${this},${temp},${dummy}`);
 }
@@ -122,10 +122,10 @@ foo.call('console','log','!'); // console,log,!
 apply
 ---
 call과 비슷하지만 인자값이 배열로 들어간다는것에 차이가 있다.
-```cpp
+```js
 
 function foo(temp,dummy){
-    console.log(``${this},${temp},${dummy}``);
+    console.log(`${this},${temp},${dummy}`);
 }
 foo.apply('console',['log',"!"]); // console,log,!
 ```
@@ -134,7 +134,7 @@ bind
 ---
 bind메서드는 call,apply와 달리 새롭게 바인딩한 함수를 만들어 줍니다.
 
-```cpp
+```js
 let foo = {
     name: 'kim'
 };
@@ -154,7 +154,7 @@ koo(); // kim
 생성자에서 this
 ===
 
-```cpp
+```js
 var name="park"
 function foo(name) {
   this.name = name;
@@ -168,7 +168,7 @@ console.log(window.name); //lee
 console.log(park.name); //error!
 
 
-````
+```
 생성자 함수가 생성하는 객체로 this는 바인딩 됩니다.
 생성자가 아닌 함수에서 호출하는 경우에는 this는 당연히 전역객체인 window에 바인딩이 됩니다.
 다른 예제를 살펴보죠
@@ -177,7 +177,7 @@ console.log(park.name); //error!
 
 이벤트리스너의서의 this
 ===
-```cpp
+```js
 var body = document.querySelector('body')
 body.addEventListener('click', function () {
   console.log(this); //<body></body>
@@ -200,7 +200,7 @@ new 바인딩 - 명시적 바인딩 - 암시적 바인딩 - 기본 바인딩 이
 명시적바인딩과 암시적 바인딩의 우선순위 비교
 ---
 
-```cpp
+```js
 function foo() {
   console.log(this.name)
 }
@@ -220,7 +220,7 @@ call메서드를 통해 alice 객체를 명시적으로 바인딩하면 obj를 �
 new바인딩과 명시적 바인딩비교
 ---
 
-```cpp
+```js
 function foo(name) {
   this.name = name
 }
@@ -252,7 +252,7 @@ arrow함수의 this는 조금 특별합니다.
 일반 함수와는 다르게 arrow함수는 함수안에서의 this를 가지고 있지 않습니다.대신 화살표 함수에서 this는 자신을 감싼 정적 범위lexical context가지며
 전역 코드에서는 전역 객체를 가리킵니다.
 
-```cpp
+```js
 function foo() {
   setTimeout(function callback() {
     console.log(this.name)
@@ -276,7 +276,7 @@ callback함수는 setTimeout메서드가 실행시키는 것이고
 windos의 내장 함수인 setTimeout메서드는 callback형태로 실행시킬것이므로
 this는 전역 객체로 바인딩이 된다.
 
-```cpp
+```js
 function foo() {
     setTimeout(() => {
         console.log(this.name)
