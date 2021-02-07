@@ -20,7 +20,7 @@ this 혼자 쓰인경우
 
  ![GlobalScope]({{site.url}}/img/javascript/this/GlobalScope_this.png)
 
-위 그림과 같이 this는 스코프범위내에서의 객체를 뜻하며 아무것도 선언되지 않는 about:blank창에서는 객체가 window이기 때문에 this는 window객체를 출력합니다.
+위 그림과 같이 this는 컨텍스트 객체를 뜻하며 아무것도 선언되지 않는 about:blank창에서는 객체가 window이기 때문에 this는 window객체를 출력합니다.
 
 일반적인 바인딩
 ===
@@ -80,15 +80,15 @@ person.children.showInfo1();
 
 그리고 밑에 children객체 안에서의 name 호출 구문을 보시면 person객체의 name이 아닌
 `children`객체의 name인 park를 호출하는것을 알 수 있습니다. 
-이를 통해 this는 자기 스코프 상위 객체를 가르키는것을 알 수있습니다. 
+이를 통해 this는 자기 컨택스트 객체를 가르키는것을 알 수있습니다. 
 
 
 
 
 명시적(explicit) 바인딩.
 ===
-명시적 바인딩의 종류는 3가지이다.`call`,`apply`,`bind`를 이용하여 인자를 this
-`apply`,`call`,`bind`메서드를 이용하여 인자를 this로 만들어주는 기능을 뜻합니다.
+명시적 바인딩의 종류는 3가지이다.
+`apply`,`call`,`bind`메서드를 이용하여 this를 바인딩을 하는것이며
 먼저 간단한 예제를 살펴보죠.
 
 call
@@ -187,7 +187,7 @@ binding의 우선순위
 ===
 자 여러가지 형태의 this의 바인딩 방법을 알아보았는데요
 이 바인딩들도 우선순위가 있습니다.
-new 바인딩 - 명시적 바인딩 - 암시적 바인딩 - 기본 바인딩 이 순서대로 우선순위가 정해지며
+`new 바인딩 - 명시적 바인딩 - 암시적 바인딩 - 기본 바인딩` 이 순서대로 우선순위가 정해지며
 아래 예제들을 살펴보며 어떻게 우선순위가 적용되는지 살펴보죠.
 
 기본바인딩은 암시적 바인딩의 일부기 떄문에 패스하고
@@ -289,7 +289,7 @@ foo() // 'park'
 obj.foo() // 'kim'
 foo.call({name: "lee"}) // 'lee!'
 ```
-`arrow`함수의 this는 상위 스코프 범위를 사용하며 `foo`를 호출했을 경우에는 상위 객체가 window인것을 확인 할 수 있으며 `obj.foo`는 암시적으로 바인딩된 `obj`객체 그리고 `foo.call`은 명시적으로 사용된 것을 알 수 있습니다.
+`arrow`함수의 this는 컨택스트객체를 사용하며 `foo`를 호출했을 경우에는 상위 객체가 window인것을 확인 할 수 있으며 `obj.foo`는 암시적으로 바인딩된 `obj`객체 그리고 `foo.call`은 명시적으로 사용된 것을 알 수 있습니다.
 
 
 
