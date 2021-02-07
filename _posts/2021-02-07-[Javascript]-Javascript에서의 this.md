@@ -11,7 +11,7 @@ tags:
 ---
 
 Javascript를 사용하다보면 this를 많이들 사용해본 경험이 있을거다.
-this란
+this란 메서드를 호출한 객체가 저장되어있는 속성입니다.
 Javascript에서의 this는 상황별로 지칭하는 대상도 다르고 우선순위도 다르다
 차근차근 예시를 들어가며 알아보자.
 
@@ -51,8 +51,8 @@ console.log(this.temp);// 10
 이제 window객체가 아닌 다른 일반 객체 안에서의 예시들을 살펴보죠.
 
 
-암시적(implicit) 바인딩..
----
+암시적(implicit) 바인딩
+===
 ```cpp
 var name ="kimchi"
 function temp() {
@@ -82,14 +82,14 @@ person객체안에서의 kim을 가르키는걸 볼 수 있습니다.
 그렇습니다 객체 안에서의 this는 해당 객체를 가르키고 따라서 temp의 this객체는 person 객체안에서 사용되었기 때문에 person객체 안에서의 name인 kim을 가르키게 됩니다.
 
 그리고 밑에 children객체 안에서의 name 호출 구문을 보시면 person객체의 name이 아닌
-children객체의 name인 park를 호출하는것을 알 수 있습니다. 이를 통해 this는 무조건
-객체안에서의 ~것을 알 수 있습니다.
-...
+children객체의 name인 park를 호출하는것을 알 수 있습니다. 
+이를 통해 this는 자기 스코프 상위 객체를 가르키는것을 알 수있습니다. 
+
 
 
 
 명시적(explicit) 바인딩.
---- 
+===
 명시적 바인딩의 종류는 3가지이다.call,apply,bind를 이용하여 인자를 this
 apply,call,bind메서드를 이용하여 인자를 this로 만들어주는 기능을 뜻합니다.
 먼저 간단한 예제를 살펴보죠.
@@ -150,7 +150,8 @@ let koo = poo.show.bind(foo);
 koo(); // kim
 ```
 
-생성자에서의 this
+
+생성자에서 this
 ===
 
 ```cpp
@@ -171,31 +172,6 @@ console.log(park.name); //error!
 생성자 함수가 생성하는 객체로 this는 바인딩 됩니다.
 생성자가 아닌 함수에서 호출하는 경우에는 this는 당연히 전역객체인 window에 바인딩이 됩니다.
 다른 예제를 살펴보죠
-
-
-```cpp
-function foo(a) {
-  this.a = a;
-  this.qwer = 20;
-}
-
-var bar1 = new foo(2);
-console.log(bar1.a); // 2
-console.log(bar1.qwer); // 20
-
-// 1. 새 객체가 만들어짐
-var obj = {};
-// 2. 새로 생성된 객체의 Prototype 체인이 함수의 프로토타입과 연결됨
-Object.setPrototypeOf(obj, foo.prototype); // 프로토타입을 연결합니다. 이 글에서는 무시해도 상관없습니다.
-// 3. 1에서 생성된 객체를 context 객체로 사용(명시적으로)하여 함수가 실행됨
-foo.call(obj, 2);
-// 4. 이 함수가 객체를 반환하지 않는 한 1에서 생성된 객체가 반환됨
-var bar2 = obj; // 여기서 foo는 반환(return)이 없으므로 인스턴스가 생성(된 것처럼 동작)
-
-console.log(bar2.a); // 2
-console.log(bar2.qwer); // 20
-```
-이걸 보면 마치 js안에서도 class가 있는것처럼 보입니다.
 
 
 
@@ -252,15 +228,21 @@ function foo(name) {
 var obj1 = {}
 
 var poo = foo.bind(obj1)
-poo("chris")
-console.log(obj1.name) // chris
+poo("kim")
+console.log(obj1.name) // kim
 
-var obj2 = new helloFn("alice")
-console.log(obj1.name) // chris
-console.log(obj2.name) // alice
+var obj2 = new poo("lee")
+console.log(obj1.name) // kim
+console.log(obj2.name) // lee
 ```
 
+먼저 foo 객체에 obj1을 명시적 바인딩형식으로 바인딩 하여 poo객체가 만들어 졌다
+poo('kim')을 싱행하면 하드 바인딩 된 obj1 객체의 name에도 kim이 바인딩 된 것을 
+확인 할 수 있다.
 
+poo함수를 생성자 함수를 이용해서 바인딩하면 어떻게 될까요
+obj2라는 새로운 객체로 바인딩이 되며 obj2.name은 'lee'가 되는것을 알 수 있습니다.
+따라서 생성자를 이용한 new 바인딩이 명시적 바인딩보다 우선순위가 높다는 것을 알 수 있습니다.
 
 
 화살표함수 this
@@ -313,14 +295,6 @@ foo.call({name: "lee"}) // 'lee!'
 ```
 arrow함수의 this는 상위 스코프 범위를 사용하며 foo를 호출했을 경우에는 상위 객체가 window인것을 확인 할 수 있으며 obj.foo는 암시적으로 바인딩된 obj객체 그리고 foo.call은 명시적으로 사용된 것을 알 수 있습니다.
 
-
-
-
-
-
-
-
-this는 최대한 명시적으로만 사용하는게 좋습니다 ㅠㅜ
 
 
 참고
