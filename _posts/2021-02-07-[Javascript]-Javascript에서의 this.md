@@ -11,8 +11,7 @@ tags:
 ---
 
 Javascript를 사용하다보면 this를 많이들 사용해본 경험이 있을거다.
-this란 메서드를 호출한 객체가 저장되어있는 속성입니다.
-Javascript에서의 this는 상황별로 지칭하는 대상도 다르고 우선순위도 다르다
+this란 메서드를 호출한 객체가 저장되어있는 속성인데 이게 상황별로 지정하는 대상도 틀리고 우선순위도 다르다 그래서 가끔 예상치 못한 상황도 발생하는데 우선순위만 정확하게 파악해도 이런 일이 없을거다.
 차근차근 예시를 들어가며 알아보자.
 
 this 혼자 쓰인경우
@@ -21,9 +20,7 @@ this 혼자 쓰인경우
 
  ![GlobalScope]({{site.url}}/img/javascript/this/GlobalScope_this.png)
 
-위 그림과 같이 this는 스코프범위내에서의 객체를 뜻하며 아무것도 선언되지 않는 about:blank창에서는 객체가 window이기 때문에 this는 window객체를 출력합니다....수정!
-그렇다면 다른 객체안에서의 this는 어떤식으로 표현이 될까요??
-
+위 그림과 같이 this는 스코프범위내에서의 객체를 뜻하며 아무것도 선언되지 않는 about:blank창에서는 객체가 window이기 때문에 this는 window객체를 출력합니다.
 
 일반적인 바인딩
 ===
@@ -77,12 +74,12 @@ person.showInfo2();
 person.children.showInfo1();
 
 ```
-person.showinfo1()메서드를 호출하였을 때 name이 window객체에서 kimchi를 가르키지 않고
-person객체안에서의 kim을 가르키는걸 볼 수 있습니다. 
-그렇습니다 객체 안에서의 this는 해당 객체를 가르키고 따라서 temp의 this객체는 person 객체안에서 사용되었기 때문에 person객체 안에서의 name인 kim을 가르키게 됩니다.
+`person.showinfo1()`메서드를 호출하였을 때 name이 `window`객체에서 kimchi를 가르키지 않고
+`person`객체안에서의 kim을 가르키는걸 볼 수 있습니다. 
+그렇습니다 객체 안에서의 this는 해당 객체를 가르키고 따라서 temp의 this는 `person`객체안에서 사용되었기 때문에 `person`객체 안에서의 name인 kim을 가르키게 됩니다.
 
 그리고 밑에 children객체 안에서의 name 호출 구문을 보시면 person객체의 name이 아닌
-children객체의 name인 park를 호출하는것을 알 수 있습니다. 
+`children`객체의 name인 park를 호출하는것을 알 수 있습니다. 
 이를 통해 this는 자기 스코프 상위 객체를 가르키는것을 알 수있습니다. 
 
 
@@ -90,8 +87,8 @@ children객체의 name인 park를 호출하는것을 알 수 있습니다.
 
 명시적(explicit) 바인딩.
 ===
-명시적 바인딩의 종류는 3가지이다.call,apply,bind를 이용하여 인자를 this
-apply,call,bind메서드를 이용하여 인자를 this로 만들어주는 기능을 뜻합니다.
+명시적 바인딩의 종류는 3가지이다.`call`,`apply`,`bind`를 이용하여 인자를 this
+`apply`,`call`,`bind`메서드를 이용하여 인자를 this로 만들어주는 기능을 뜻합니다.
 먼저 간단한 예제를 살펴보죠.
 
 call
@@ -107,7 +104,7 @@ var obj = {
 };
 foo.call(obj); // 2
 ```
-foo함수를 실행했을때 call메서드를 이용해서 실행을해주면 call의 인자인 obj객체가 this로 지정이 되기 때문에 a값은 전역객체로 선언된 1이 아니고 obj객체안의 2가 출력이 됩니다.
+`foo`함수를 실행했을때 `call`메서드를 이용해서 실행을해주면 `call`의 인자인 `obj`객체가 this로 지정이 되기 때문에 a값은 전역객체로 선언된 1이 아니고 `obj`객체안의 2가 출력이 됩니다.
 
 
 ```js
@@ -117,11 +114,11 @@ function foo(temp,dummy){
 foo.call('console','log','!'); // console,log,!
 
 ```
-첫번쨰 인자값은 무조건 this객체를 가리키며 두번쨰 인자값부터는 call메서드를 호출한 함수의 인자값을 순서대로 넣는다고 생각하면 된다.
+첫번쨰 인자값은 무조건 this객체를 가리키며 두번쨰 인자값부터는 `call`메서드를 호출한 함수의 인자값을 순서대로 넣는다고 생각하면 된다.
 
 apply
 ---
-call과 비슷하지만 인자값이 배열로 들어간다는것에 차이가 있다.
+`call`과 비슷하지만 인자값이 배열로 들어간다는것에 차이가 있다.
 ```js
 
 function foo(temp,dummy){
@@ -132,7 +129,7 @@ foo.apply('console',['log',"!"]); // console,log,!
 
 bind
 ---
-bind메서드는 call,apply와 달리 새롭게 바인딩한 함수를 만들어 줍니다.
+`bind`메서드는 call,apply와 달리 새롭게 바인딩한 함수를 만들어 줍니다.
 
 ```js
 let foo = {
@@ -171,7 +168,6 @@ console.log(park.name); //error!
 ```
 생성자 함수가 생성하는 객체로 this는 바인딩 됩니다.
 생성자가 아닌 함수에서 호출하는 경우에는 this는 당연히 전역객체인 window에 바인딩이 됩니다.
-다른 예제를 살펴보죠
 
 
 
@@ -213,8 +209,8 @@ var obj = {
 obj.foo() // kim
 obj.foo.call({ name: "lee" }) // lee
 ```
-obj.foo()는 암시적 바인딩이 되어 obj객체가 바인딩이 되며 foo함수는 obj객체안의 name을 출력한다.
-call메서드를 통해 alice 객체를 명시적으로 바인딩하면 obj를 통해 foo함수를 실행했더라도 명시적으로 바인딩 함수로 인해 this.name은 alice로 바인딩이 된다.
+`obj.foo()`는 암시적 바인딩이 되어 `obj`객체가 바인딩이 되며 `foo`함수는 `obj`객체안의 name을 출력한다.
+`call`메서드를 통해 `name`객체를 명시적으로 바인딩하면 `obj`를 통해 `foo`함수를 실행했더라도 명시적으로 바인딩 함수로 인해 `this.name`은 lee가 바인딩이 된다.
 따라서 우리는 명시적 바인딩이 우선순위가 더 높은것을 알 수 있습니다.
 
 new바인딩과 명시적 바인딩비교
@@ -236,12 +232,12 @@ console.log(obj1.name) // kim
 console.log(obj2.name) // lee
 ```
 
-먼저 foo 객체에 obj1을 명시적 바인딩형식으로 바인딩 하여 poo객체가 만들어 졌다
-poo('kim')을 싱행하면 하드 바인딩 된 obj1 객체의 name에도 kim이 바인딩 된 것을 
+먼저 `foo`객체에 `obj1`을 명시적 바인딩형식으로 바인딩 하여 `poo`객체가 만들어 졌다
+`poo('kim')`을 실행하면 하드 바인딩 된 `obj1`객체의 `name`에도 kim이 바인딩 된 것을 
 확인 할 수 있다.
 
-poo함수를 생성자 함수를 이용해서 바인딩하면 어떻게 될까요
-obj2라는 새로운 객체로 바인딩이 되며 obj2.name은 'lee'가 되는것을 알 수 있습니다.
+`poo`함수를 생성자 함수를 이용해서 바인딩하면 어떻게 될까요
+`obj2`라는 새로운 객체로 바인딩이 되며 `obj2.name`은 'lee'가 되는것을 알 수 있습니다.
 따라서 생성자를 이용한 new 바인딩이 명시적 바인딩보다 우선순위가 높다는 것을 알 수 있습니다.
 
 
@@ -271,9 +267,9 @@ obj.foo() // 'park'
 foo.call({ name: "lee" }) // 'park!'
 
 ```
-위에서의 callback함수는 실행시점에서 컨텍스트 범위가 지정됩니다. 그리고 
-callback함수는 setTimeout메서드가 실행시키는 것이고 
-windos의 내장 함수인 setTimeout메서드는 callback형태로 실행시킬것이므로
+위에서의 `callback`함수는 실행시점에서 컨텍스트 범위가 지정됩니다. 그리고 
+`callback`함수는 `setTimeout`메서드가 실행시키는 것이고 
+windos의 내장 함수인 `setTimeout`메서드는 `callback`형태로 실행시킬것이므로
 this는 전역 객체로 바인딩이 된다.
 
 ```js
@@ -293,13 +289,13 @@ foo() // 'park'
 obj.foo() // 'kim'
 foo.call({name: "lee"}) // 'lee!'
 ```
-arrow함수의 this는 상위 스코프 범위를 사용하며 foo를 호출했을 경우에는 상위 객체가 window인것을 확인 할 수 있으며 obj.foo는 암시적으로 바인딩된 obj객체 그리고 foo.call은 명시적으로 사용된 것을 알 수 있습니다.
+`arrow`함수의 this는 상위 스코프 범위를 사용하며 `foo`를 호출했을 경우에는 상위 객체가 window인것을 확인 할 수 있으며 `obj.foo`는 암시적으로 바인딩된 `obj`객체 그리고 `foo.call`은 명시적으로 사용된 것을 알 수 있습니다.
 
 
 
 참고
 ---
-https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-this%EC%9D%98-4%EA%B0%80%EC%A7%80-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D
+<https://yuddomack.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-this%EC%9D%98-4%EA%B0%80%EC%A7%80-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D>
 
 
-https://jeonghwan-kim.github.io/2017/10/22/js-context-binding.html#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC-%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B0%94%EC%9D%B8%EB%94%A9%EC%9D%98-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84
+<https://jeonghwan-kim.github.io/2017/10/22/js-context-binding.html#%EC%95%94%EC%8B%9C%EC%A0%81-%EB%B0%94%EC%9D%B8%EB%94%A9%EA%B3%BC-%EB%AA%85%EC%8B%9C%EC%A0%81-%EB%B0%94%EC%9D%B8%EB%94%A9%EC%9D%98-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84>
