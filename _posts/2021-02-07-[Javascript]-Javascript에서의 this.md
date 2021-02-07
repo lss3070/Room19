@@ -1,5 +1,5 @@
 ---
-title: "[React]Javascript this와 this 바인딩 우선순위"
+title: "[Javascript]Javascript this와 this 바인딩 우선순위"
 subtitle: "기초지식"
 layout: post
 auther: "Hux"
