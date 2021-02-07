@@ -125,7 +125,7 @@ call과 비슷하지만 인자값이 배열로 들어간다는것에 차이가 �
 ```cpp
 
 function foo(temp,dummy){
-    console.log(`${this},${temp},${dummy}`);
+    console.log(\`${this},${temp},${dummy}\`);
 }
 foo.apply('console',['log',"!"]); // console,log,!
 ```
