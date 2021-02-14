@@ -1,5 +1,5 @@
 ---
-title: "[Javascript] Javascript에서의 iterable과 interation
+title: "[Javascript] Javascript에서의 iterable과 iterator
 subtitle: "기본기"
 layout: post
 auther: "Hux"
@@ -15,14 +15,16 @@ tags:
 javascript에서도 이러한 Interator 기능이 정의되어 있는데 es6에 나온 iterable protocol이다
 iterable protocol은 이것은 두가지 형태로 존재하는데, 이터러블(iterable)과 이터레이터(iterator)이다.이 프로토콜을 준수한 객체만이 `for..of`문으로 순회를 할 수 있으며 `Spread문법`의 피연산자가 될 수 있다.
 
+Iterable protocol을 단순하게 말하면 데이터 컬렉션을 반복할 수 있게 하는 객체정도로 보면 됩니다.
 
-이터러블과 이터레이터를 살펴보기에 앞서 `for..of문`과 `Spread문법`에 대해 간단하게 알아보자.
+`이터러블(iterable)`과 `이터레이터(iterator)` 살펴보기에 앞서 `for..of문`과 `Spread문법`에 대해 간단하게 알아보자.
 
 
 for..of문
 ---
 for..of문은 es6에 도입되었으며 각 요소들을 순회하며 특정 작업을 반복수행하는 loop문이다.
-타입에 따라 사용할 수있는것과 없는게 구분이 되며 사용가능한 타입들을 살펴보자
+타입에 따라 사용할 수있는것과 없는게 구분이 되며 사용가능한 타입들을 살펴보자.
+
 ```js
 // 배열
 for (const val of ['a', 'b', 'c']) {
@@ -61,13 +63,13 @@ console.log(extensions);//[1,2,3,4,5,6]
 
 
 
-
 이터러블(iterable)
 ---
 iterable protocol프로토콜에 기본적으로 이용되는 문법에 대해 알아보았으니 이제 `이터러블(iterable)`에 대해 알아보죠
 `이터러블(iterable)`은 객체의 멤버변수를 반복할 수 있는 객체입니다. `이터러블(iterable)`이 사용되기 위해선 
-`이터레이터(interator)`메서드가 구현되어 있어야하며 객체 프로퍼티에는 [Symbol.interator]를 추가하여야 한다.
-배열은 대표적으로 사용되는 이터러블(iterable) 객체이므로 배열을 통해 `이터러블(iterable)`이 뭔지에 대해 알아보자.
+`이터레이터(interator)`메서드가 구현되어 있어야하며 객체 프로퍼티에는 [Symbol.interator]를 추가하여야 합니다.
+
+ `이터러블(iterable)`객체에서 배열은 대표적으로 사용되므로 배열을 통해 `이터러블(iterable)`이 뭔지에 대해 알아보자.
 
 ```js
 const array = [1, 2, 3];
@@ -87,14 +89,16 @@ for (const item of objarray) {
   console.log(item);
 }
 ```
+
 두개의 반복문을 비교해보자 
-배열인 array 객체는 iteration 프로토콜 조건을 준수하기 때문에 이터러블(iterable) 객체에서만 쓸 수 있는 for..of문을 
+배열인 array 객체는 iteration 프로토콜 조건을 준수하기 때문에 `이터러블(iterable)`객체에서만 쓸 수 있는 for..of문을 
 사용하지만 일반 객체인 obj는 iteration 프로토콜 조건을 준수하지 않았기 때문에 for..of문과 같은
 반복문이 순회하지 않으며 spread문법의 대상으로도 사용할 수 없다.
 
-iteration 프로토콜은 두가지 조건을 만족하면 됩니다.
+여기서 말하는 iteration프로토콜의 조건은 다음과 같다
 1. 객체는 [Symol.iterator]를 구현하고 있어야하며,`이터레이터(iterator)`를 리턴해야한다.
 2. 그 `이터레이터(iterator)`객체는 next() 메서드가 구현되어야 하고,{value,done} 프로퍼티를 갖는 객체를 반환해야한다.
+
 
 이런 일반객체도 위 조건에 맞춰 `이터러블(iterable)` 객체로 바꿀 수 있는데 그걸 `커스텀 이터러블(Custom iterable)`이라고 부른다.
 위 조건은 만족하는 커스텀 이터러블을 만들기에 앞에서 이터레이터(iterator)에 대해 알아보고 넘어가자.
@@ -147,30 +151,29 @@ let obj = {
 };
 
 for (let num of range) {
-  console.log(num); // 1, then 2, 3, 4, 5
+  console.log(num); // 1, 2, 3, 4, 5
 }
 ```
-[Symbol.iterator]메소드는 next메소드를 갖는 이터레이터(interation)를 반환하여야 합니다.
-그 후 이터레이터에서 next메소드는 done과 value 프로퍼티를 가지는 이터레이터 객체를 반환합니다. for ..of 문은 이터레이터객체의 done에 프로퍼티가 ture가 나올때까지 반복하며 true값이 나오면
-반복을 중지합니다.
+[Symbol.iterator]메소드는 next메소드를 갖는 `이터레이터(interation)`를 반환하여야 합니다.
+그 후 `이터레이터(interation)`에서 next메소드는 {done,value} 프로퍼티를 가지는 객체를 반환합니다.
+done의 treu값은 반복이 종료 되었다는 것을 의미하며 for..of문은 done 프로퍼티가 true가 나올때 까지 반복하는 것입니다.
 
 
-먼저 이터러블 프로토콜은 반드시 이터레이터(iterator, 메서드 next가 있는 개체)를 반환해야 합니다.
-이후 for...of는 반환된 객체만을 대상으로 작동하며
-for..of의 다음값이 필요하면 for..of의 iterator에 next메서드를 호출합니다.
-next 메서드의 반환값은 무조건 {done:Boolean,value:any}와 같은 형태이며
-done의 treu값은 반복이 종료 되었다는 것을 의미합니다.
-
-
-이터러블과 유사배열
+<!-- 마치며...
 ---
-자 이제 이터버르
-
-<!-- Interable객체는 배열을 일반화한 객체를 뜻하며, 이 Iterable객체를 이용하면 어떠한 객체든
-(for..of)와 같은 반복문을 적용할 수 있습니다. -->
+막연하게 for..of문과 spread문을 쓰며 안에 구조에 대해선 두루뭉실하게 알고 있었는데
+오늘 이렇게 이터러블과 이터레이터에 대해서 정리하는 글을 쓰며 정확하게 집고 알아가게 되었던 것 같다. -->
 
 
 
-Iterable protocol을 단순하게 말하면 데이터 컬렉션을 반복할 수 있게 하는 객체정도로 보면 될듯하다.
+
+참고
+---
+<https://poiemaweb.com/es6-iteration-for-of#3-%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94>
+
+
+
+
+
 
 
