@@ -41,7 +41,7 @@ javascript에서 객체 생성시 생성된 객체는 프로토 타입의 링크
 이 규칙을 적용해서 다음 코드를 살펴보죠
 
 
-```cpp
+```js
 function Human(name){
     this.name=name
 }
@@ -77,7 +77,7 @@ Human 생성자 함수로 생겨난 cloneHuman 객체 역시 Human.prototype와 
 리터럴 형식으로 생성된 객체의 prototype 체이닝
 ---
 
-```cpp
+```js
 let human={
     name:"kim",
     age:30
@@ -109,7 +109,7 @@ toString 메서드를 호출 하였기 때문이다.
 생성자 함수로 생성된 객체의 prototype 체이닝
 ---
 
-```cpp
+```js
 function Human(name,age){
     this.name=name;
     this.age=age;
