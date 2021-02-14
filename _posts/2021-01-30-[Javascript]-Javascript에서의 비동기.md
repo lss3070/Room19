@@ -34,7 +34,7 @@ ex) 동기 : 요청을 보낸 후 응답을 무조건 받아야 다음 동작을
 자바스크립트에서의 비동기 프로그래밍을 처리하는 방식은 크게 3가지가 있습니다. 콜백함수로,Promise,async/await 이 3가지를 살펴보기 앞서 간단하게 자바스크립트 비동기프로그래밍에 대해 살펴보죠
 
 
-```cpp
+```js
 console.log(`before ${new Date()}`);
 function After(){
     console.log(`after ${new Date()}`)
@@ -66,7 +66,7 @@ after Sun Jan 31 2021 19:00:43 GMT+0900 (대한민국 표준시)
 콜백함수를 이용해서 비동기프로그래밍을 구현하는것은 완벽하지도 않고 오래된 매커니즘입니다.
 만약 한번에 여러가지의 콜백함수가 중첩이 되어있다면 관리하는데 상당히 어려워질겁니다.아래 예제를 살펴보죠
 
-```cpp
+```js
     first(function(){
         second(function(){
             thrid(function(){
@@ -82,7 +82,7 @@ after Sun Jan 31 2021 19:00:43 GMT+0900 (대한민국 표준시)
 먄약 저기서 에러라도 난다면 읽기 힘들뿐더러 코드를 수정하는데 짜증만 날 것입니다.
 또 다른 문제를 살펴보죠.
 
-```cpp
+```js
 
 const fs = require('fs');
 function read(){
@@ -114,7 +114,7 @@ Promise는 콜백의 단점을 해결하려는 시도 속에서 만들어 졌으
 
 간단한 에제를 살펴보죠
 
-```cpp
+```js
 function start(param){
     return new Promise(function(resolve,reject){
         if(param=="ok"){
@@ -148,7 +148,7 @@ Pending : 이행
 Reject : 실패
 
 Pending(대기)
-```cpp
+```js
 return new Promise(function(resolve,reject){
     ///
 })
@@ -157,7 +157,7 @@ pending(대기) 상태에서는 위 코드와 같이 new Promise()로 인스턴�
 new Promise()메서드를 호출할 때엔 콜백함수를 선언할 수 있고 콜백함수의 인자값은 resolve와 reject입니다.
 
 Pending(이행)
-```cpp
+```js
 function Pending(){
 return new Promise(function(resolve,reject){
     resolve();
@@ -172,7 +172,7 @@ pending(이행)상태에서는 함수의 인자인 resovle를 실행하면 됩�
 
 
 Rejected(실패)
-```cpp
+```js
 function Rejected() {
   return new Promise(function(resolve, reject) {
     reject(new Error("error!!"));
@@ -193,7 +193,7 @@ catch()로 실패한 이유를 받을 수 있습니다.
 이제 promise에 대한 기본사항도 알아보았으니 Promise를 이용하여 연속적으로 비동기 동작을 하는 함수를
 만들어보죠
 
-```cpp
+```js
 
 new Promise(function(resolve,reject){
     setTimeout(function(){
@@ -229,7 +229,7 @@ async/await
 드디어 aync/await 항목에 도착했네요!!
 aync/awiat는 es8에 등장하게된 문법이고 이 특별한 문법을 사용하면 Promise를 좀 더 편하게 사용하실 수 있어요. 위의 방식들처럼 복잡하지 않고 깔끔하게 비동기적인 프로그래밍을 만들 수 있습니다.
 
-```cpp
+```js
 async function GetAuth(id){
     try{
         let auth = await GetUsr(id);
@@ -249,7 +249,7 @@ GetAuth("usr");
 일반적으로 동작하는 방식과 비슷하지 않나요?? 블록내에서도 에러처리구문도 사용가능해서..
  더 진가를 발휘하는 순간은 여러개의 비동기 작업을 시작할 때입니다. 아래 예제를 살펴보죠
 
-```cpp
+```js
 async function GetUsr(id){
     let usrInfo={
         auth:null,
