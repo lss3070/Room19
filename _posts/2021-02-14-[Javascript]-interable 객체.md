@@ -1,5 +1,5 @@
 ---
-title: "[Javascript] Javascript에서의 iterable과 iterator
+title: "[Javascript] Javascript에서의 iterable과 iterator"
 subtitle: "기본기"
 layout: post
 auther: "Hux"
@@ -101,7 +101,7 @@ for (const item of objarray) {
 
 
 이런 일반객체도 위 조건에 맞춰 `이터러블(iterable)` 객체로 바꿀 수 있는데 그걸 `커스텀 이터러블(Custom iterable)`이라고 부른다.
-위 조건은 만족하는 커스텀 이터러블을 만들기에 앞에서 이터레이터(iterator)에 대해 알아보고 넘어가자.
+위 조건은 만족하는 커스텀 `이터러블(iterable)`을 만들기에 앞에서` 이터레이터(iterator)`에 대해 알아보고 넘어가자.
 
 
 이터레이터(iterator)
