@@ -10,20 +10,22 @@ tags:
     Interable
 ---
 
-먼저 Interator란 뭘까?
-위키 백과에 따르면 '반복자(iterator)는 객체 지향적 프로그래밍에서 배열이나 그와 유사한 자료 구조의 내부의 요소를 순회(traversing)하는 객체이다.' 라고 명시가 되어있다.
-javascript에서도 이러한 Interator 기능이 정의되어 있는데 es6에 나온 iterable protocol이다
-iterable protocol은 이것은 두가지 형태로 존재하는데, 이터러블(iterable)과 이터레이터(iterator)이다.이 프로토콜을 준수한 객체만이 `for..of`문으로 순회를 할 수 있으며 `Spread문법`의 피연산자가 될 수 있다.
+먼저 Interator란 뭘까요?
 
-Iterable protocol을 단순하게 말하면 데이터 컬렉션을 반복할 수 있게 하는 객체정도로 보면 됩니다.
+위키 백과에 따르면 'Iterator(반복자)는 객체 지향적 프로그래밍에서 배열이나 그와 유사한 자료 구조의 내부의 요소를 순회(traversing)하는 객체이다.' 라고 명시가 되어있습니다.
 
-`이터러블(iterable)`과 `이터레이터(iterator)` 살펴보기에 앞서 `for..of문`과 `Spread문법`에 대해 간단하게 알아보자.
+javascript에서도 이러한 Interator 기능이 정의되어 있는데 es6에 나온 iterable protocol입니다.
+
+iterable protocol은 이터러블(iterable)과 이터레이터(iterator)라는 형태로 두가지가 존재합니다.
+iterable protocol의 프로토콜 규약을 준수한 객체만이 반복문인 `for..of`과 `Spread문법`의 피연산자가 될 수 있습니다.`for..of`문을 보셔서 아셨겠지만 Iterable protocol은 단순하게 데이터 컬렌션을 반복할 수 있게하는 객체로 보시면 됩니다.
+
+Iterable protocol의 형태인`이터러블(iterable)`과 `이터레이터(iterator)`를 살펴보기에 앞서 `for..of문`과 `Spread문법`에 대해 간단하게 알아보자.
 
 
 for..of문
 ---
 for..of문은 es6에 도입되었으며 각 요소들을 순회하며 특정 작업을 반복수행하는 loop문이다.
-타입에 따라 사용할 수있는것과 없는게 구분이 되며 사용가능한 타입들을 살펴보자.
+객체의 타입에 따라 사용할 수있는것 과 없는게 구분이 되며 사용가능한 타입들을 살펴보자.
 
 ```js
 // 배열
@@ -67,9 +69,9 @@ console.log(extensions);//[1,2,3,4,5,6]
 ---
 iterable protocol프로토콜에 기본적으로 이용되는 문법에 대해 알아보았으니 이제 `이터러블(iterable)`에 대해 알아보죠
 `이터러블(iterable)`은 객체의 멤버변수를 반복할 수 있는 객체입니다. `이터러블(iterable)`이 사용되기 위해선 
-`이터레이터(interator)`메서드가 구현되어 있어야하며 객체 프로퍼티에는 [Symbol.interator]를 추가하여야 합니다.
+`이터레이터(interator)`메서드가 구현되어 있어야하며 객체 프로퍼티에는 [Symbol.interator]가 추가되어야 합니다.
 
- `이터러블(iterable)`객체에서 배열은 대표적으로 사용되므로 배열을 통해 `이터러블(iterable)`이 뭔지에 대해 알아보자.
+ `이터러블(iterable)`객체에서 배열은 대표적으로 기능이므로 배열을 통해 `이터러블(iterable)`에 대해 알아보자.
 
 ```js
 const array = [1, 2, 3];
@@ -82,15 +84,15 @@ console.log(Symbol.iterator in obj); // true
 
 // 이터러블 프로토콜을 준수한 배열은 for...of 문에서 순회 가능하다.
 for (const item of array) {
-  console.log(item);
+  console.log(item); //1 2 3
 }
 
 for (const item of objarray) {
-  console.log(item);
+  console.log(item); //VM529:14 Uncaught ReferenceError: objarray is not defined
 }
 ```
 
-두개의 반복문을 비교해보자 
+array 객체와 objarray객체 두개의 반복문을 비교해보자 
 배열인 array 객체는 iteration 프로토콜 조건을 준수하기 때문에 `이터러블(iterable)`객체에서만 쓸 수 있는 for..of문을 
 사용하지만 일반 객체인 obj는 iteration 프로토콜 조건을 준수하지 않았기 때문에 for..of문과 같은
 반복문이 순회하지 않으며 spread문법의 대상으로도 사용할 수 없다.

@@ -1,5 +1,5 @@
 ---
-title: "[Javascript] Javascript에서의 iterable과 iterator"
+title: "[Javascript] Javascript에서의 generate"
 subtitle: "기본기"
 layout: post
 auther: "Hux"
