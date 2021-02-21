@@ -167,3 +167,8 @@ const gen = (function* () {
 gen.next();
 ```
 
+
+참고
+---
+<https://poiemaweb.com/es6-generator>
+<https://ko.javascript.info/generators#ref-1932>
