@@ -26,11 +26,14 @@ function* test() {
 const gen = test();
 console.log(gen);//test {<suspended>}
 ```
-test 함수를 호출했는데 왜 값이 3 반환이 안될까요??
-제너레이터 함수는 일반적인 함수와 다르게 함수를 호출하게 되면 함수가 실행이 되지않고 실행을 처리하는 제너레이터 객체가 반환이 됩니다.
-test {<suspended>}는 뭘까요 안에 구조를 한번 살펴보죠
+test 함수를 호출했는데 왜 값이 3 반환이 안될까??
 
-test suspended이미지..
+제너레이터 함수는 일반적인 함수와 다르게 함수를 호출하게 되면 함수가 실행이 되지않고 실행을 처리하는 제너레이터 객체가 반환이 됩니다.
+
+ ![프로미스도식화]({{site.url}}/img/javascript/generate/step1.png)
+
+
+이 안에 객체를 사용하기 위해선 next란 메서드와 yield란 객체가 필요합니다.
 
 
 yield,next
