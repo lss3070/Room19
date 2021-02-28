@@ -111,10 +111,12 @@ capturing.forEach(function(div) {
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
     let capturing = document.getElementsByClassName('capturing');
-    capturing.forEach(function(div) {
-	    div.addEventListener('click', function(){
-		  capture: true // default 값은 false입니다.
-	});
+    for(let a of capturing){
+      a.addEventListener('click', function(){
+          capture: true
+        }
+    }
+
 });
 });
 
