@@ -114,13 +114,9 @@ capturing.forEach(function(div) {
     for(let a of capturing){
       a.addEventListener('click', function(){
           capture: true
-        }
-    }
-
+        })
+    };
 });
-});
-
-
 </script>
 
 <div class="capturing" onclick="alert('three')">three
