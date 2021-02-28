@@ -38,11 +38,11 @@ test 함수를 호출했는데 왜 값이 3 반환이 안될까??
 
 yield,next
 ---
-yield 와 next는 제너레이터에서의 중요한 메서드입니다.
-next메서드는 generate함수를 실행시키는 메서드라 생각하시면 됩니다.
-next메서드를 호출하게 되면 yield<value>문을 만날때까지 실행이 계속됩니다.
-yield<value> 문을 만나게 되면 함수의 실행이 멈추고 value 값이 반환이 됩니다.
-yield는 제너레이터 함수가 실행될때 debuging모드에서의 break point처럼 중간에 함수를 정지를 시키며 yield 뒤에 오는 표현식이 반환됩니다.
+`yield`와 `next`는 제너레이터에서의 중요한 메서드입니다.
+`next`메서드는 generate함수를 실행시키는 메서드라 생각하시면 됩니다.
+`next`메서드를 호출하게 되면 `yield<value>`문을 만날때까지 실행이 계속됩니다.
+`yield<value>`문을 만나게 되면 함수의 실행이 멈추고 value 값이 반환이 됩니다.
+`yield`는 제너레이터 함수가 실행될때 debuging모드에서의 break point처럼 중간에 함수를 정지를 시키며 `yield `뒤에 오는 표현식이 반환됩니다.
 
 
 ```js
@@ -59,7 +59,7 @@ console.log(gen.next());//{value: 3, done: true}
 console.log(gen.next());//{value: undefined, done: true}
 ```
 
-위 예제에서도 gen함수의 next메서드를 호출하였을 때 순차적으로 yield에 멈추게 되고 yield의 value값이 반환이 됩니다.
+위 예제에서도 gen함수의 `next`메서드를 호출하였을 때 순차적으로 `yield`에 멈추게 되고 `yield`의 value값이 반환이 됩니다.
 마지막으로는 return문에 다다르고 제너레이터가 종료가 됩니다.
 제너레이터가 종료된 후 next메서드를 호출하여도 value 값은 undefinded입니다.
 
@@ -85,7 +85,7 @@ for(let value of gen) {
 제너레이터도 이터러블처럼 fot..of 반복문을 사용해서 값을 얻을 수 있습니다.
 하지만 위예제문에서의 return 값은 반환이 안되죠 그 이유는
 이터러블의 {value,done}프러퍼티에서 done의 값이 true일 경우 value값은 무시가 되기 때문입니다.
-그러므로 반복문에서 제너레이터를 사용할 경우 모든 값은 yield로 반환해주어야 합니다.
+그러므로 반복문에서 제너레이터를 사용할 경우 모든 값은 `yield`로 반환해주어야 합니다.
 
 
 ```js
@@ -123,9 +123,9 @@ console.log([...test(10)]);
 
 예외처리
 ---
-제너레이터의 인자값은 yield의 value에 값이 지정됩니다.
-하지만 next이외에도 generate에 throw란 메서드를 이용해서 값을 던질 수 있습니다. 
-throw의 경우에는 next메서드와 달리 yield의 값에 지정이 되지 않고 generate의 오류 메세지에 바인딩이 됩니다.
+제너레이터의 인자값은 `yield`의 value에 값이 지정됩니다.
+하지만 `next`이외에도 generate에 throw란 메서드를 이용해서 값을 던질 수 있습니다. 
+`throw`의 경우에는 `next`메서드와 달리 `yield`의 값에 지정이 되지 않고 generate의 오류 메세지에 바인딩이 됩니다.
 <!-- 그런데 인자 값으로도 errer 값을 던질 수 있습니다.
 에러를 yield 안으로 전달하려면 generator.throw(err)를 호출해야 합니다. generator.throw(err)를 호출하게 되면 err는 yield가 있는 줄로 던져집니다. -->
 
@@ -144,8 +144,8 @@ let value = gen.next();
 
 비동기처리
 ---
-또한 제너레이터는 Promise처럼 비동기 처리를 동기 방식으로 구현할 수 있다.
-generate함수안에 yield값에 반환되는 비동기 함수를 넣어주면 됩니다.
+또한 제너레이터는 `Promise`처럼 비동기 처리를 동기 방식으로 구현할 수 있다.
+generate함수안에 `yield`값에 반환되는 비동기 함수를 넣어주면 됩니다.
 
 ```js
 
