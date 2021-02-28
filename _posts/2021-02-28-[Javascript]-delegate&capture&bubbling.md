@@ -205,14 +205,16 @@ Event Delegate
 </body>
 ```
 <html>
-<script>
-  let table = document.getElementById('table');
+<script> 
+window.addEventListener('DOMContentLoaded', (event) => {
+    let table = document.getElementById('table');
   table.onclick=function(e){
     let target = e.target;
     if(target.tagname!='TD') return;
 
     console.log(target.innerHTML);
   }
+  });
 
 </script>
 <body>
