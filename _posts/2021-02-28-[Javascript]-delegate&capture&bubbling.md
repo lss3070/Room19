@@ -111,15 +111,17 @@ capturing.forEach(function(div) {
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
     let capturing = document.getElementsByClassName('capturing');
-    for(let a of capturing){
-      a.addEventListener('click', function(){},{capture:true})
+    for(let element of capturing){
+      element.addEventListener('click', function(e){
+        alert(e.target.innerHTML)
+      },{capture:true})
     };
 });
 </script>
 
-<div class="capturing" onclick="alert('three')">three
-    <div class="capturing" onclick="alert('two')">two
-        <div class="capturing" onclick="alert('one')">one</div>
+<div class="capturing">three
+    <div class="capturing">two
+        <div class="capturing">one</div>
     </div>
 </div>
 </html>
