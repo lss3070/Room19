@@ -55,9 +55,9 @@ Javascript의 이벤트 등록
   }
 </style>
 
-<div class="bubbling" onclick="alert('form')">three
-    <div class="bubbling" onclick="alert('div')">two
-        <div class="bubbling" onclick="alert('p')">one</div>
+<div class="bubbling" onclick="alert('three')">three
+    <div class="bubbling" onclick="alert('two')">two
+        <div class="bubbling" onclick="alert('one')">one</div>
     </div>
 </div>
 
@@ -88,7 +88,7 @@ p태그를 클릭하게 되면 p태그의 상위요소인 div와 form태그도 �
 <script>
 
 let capturing = document.getElementsByClassName('capturing');
-divs.forEach(function(div) {
+capturing.forEach(function(div) {
 	div.addEventListener('click', function(){
 		capture: true // default 값은 false입니다.
 	});
