@@ -112,9 +112,7 @@ capturing.forEach(function(div) {
   window.addEventListener('DOMContentLoaded', (event) => {
     let capturing = document.getElementsByClassName('capturing');
     for(let a of capturing){
-      a.addEventListener('click', function(){
-          capture: true
-        })
+      a.addEventListener('click', function(){},{capture:true})
     };
 });
 </script>
