@@ -198,7 +198,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let table = document.getElementById('table');
   table.onclick=function(e){
     let td = e.target.closest('td');
-    if(td&&table.contains(td)) console.log(target.innerHTML);
+    if(td&&table.contains(td)) alert(td.innerHTML);
   }
   });
 
@@ -259,7 +259,7 @@ class Menu{
   onClick(event){
     let action = event.target.dataset.action;
     if(action){
-      this.[action]();
+      this [action]();
     }
   }
 }
