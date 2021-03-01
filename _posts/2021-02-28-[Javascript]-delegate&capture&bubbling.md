@@ -302,7 +302,7 @@ new Menu(menu);
   onClick(event){
     let action = event.target.dataset.action;
     if(action){
-      this.[action]();
+      this [action]();
     }
   }
 }
