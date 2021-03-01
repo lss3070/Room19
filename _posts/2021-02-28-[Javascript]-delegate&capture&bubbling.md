@@ -172,6 +172,13 @@ tags:
 
 
 ```html
+<script>
+ let table = document.getElementById('table');
+  table.onclick=function(e){
+    let td = e.target.closest('td');
+    if(td&&table.contains(td)) alert(td.innerHTML);
+  }
+</script>
 <body>
   <table>
     <tr>
