@@ -105,14 +105,7 @@ IntersectionObserver.takerecords()
 lazy loading
 ---
 
-<iframe
-  style="width: 80%; height: 200px"
-  src="https://jsfiddle.net/LeeSongSeop/hr8Lt4qv/273/
-">
-</iframe>
-
-
-출처: https://mobicon.tistory.com/77 [Mobile Convergence]
+<iframe width="100%" height="300" src="//jsfiddle.net/LeeSongSeop/hr8Lt4qv/273/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 
 Infinite Scrolling
