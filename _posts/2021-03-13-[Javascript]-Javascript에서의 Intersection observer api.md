@@ -107,11 +107,10 @@ lazy loading
 
 Intersection​ Observer API를 이용하면 지연 로딩을 손쉽게 구현 할 수 있다. 구현 방법은 대상 element가 뷰포트에 들어왔을 때 이미지 경로를 변경 한 뒤 unobserve시킨다.
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="poNYqKy" src="https://codepen.io/lss3070/embed/poNYqKy?height=265&theme-id=light&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="500" style="width: 100%;" scrolling="no" title="poNYqKy" src="https://codepen.io/lss3070/embed/poNYqKy?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/lss3070/pen/poNYqKy'>poNYqKy</a> by lss3070
   (<a href='https://codepen.io/lss3070'>@lss3070</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
-
 
 Infinite Scrolling
 ---
