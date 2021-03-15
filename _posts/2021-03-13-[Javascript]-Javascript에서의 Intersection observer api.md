@@ -13,10 +13,8 @@ Intersection Observer API는 타겟 요소와 상위 요소 또는 최상위 doc
 
 viewport란?
 ---
-모바일 브라우저에서는 viewport라고 알려진 가상의 화면에 페이지를 렌더링합니다.
+모바일 브라우저에서는 viewport라고 알려진 가상의 화면에 페이지를 렌더링합니다.또한 모바일에서는 viewport meta 태그를 도입해 모바일에서의 웹하면을 크기와 스케일을 조정할수 있습니다. 웹표준은 아니지만 대부분 모바일 브라우저들이 이를 지원합니다.
 
-
-viewport는 ~~
 
 Intersection Observer API
 ---
@@ -26,8 +24,7 @@ Intersection Observer API가 주로 사용되는 떄는
 3. 광고나 배너가 노출되었는지 확인할 떄
 4. 애니메이션 작업을 수행여부를 노출여부를 통해 확인 할 때
 
-ee
-===
+
 IntersectionObserver의 생성자에는 callback과 options이라는 인수값을 가집니다.
 
 ```js
@@ -54,9 +51,7 @@ IntersectionObserverEntry의 속성
 
 `boundingClientRect` 관찰 대상의 사각형 정보를 뜻하며
 
-
 `intersectionRect` 관찰 대상의 교차한 영역 정보
-
 
 `intersectionRatio` 관찰 대상의 교차한 영역의 백분율
 
@@ -90,13 +85,42 @@ ex)
 IntersectionObserver의 메소드
 ---
 
-IntersectionObserver.observe(targetElement)
+IntersectionObserver.observe(targetElement) targetElement를 관찰합니다.
+```js
+const io = new IntersectionObserver(callback, options)
+
+const div = document.querySelector('div')
+
+io.observe(div) // div element 관찰
+```
 
 IntersectionObserver.unobserve(targetElement)
+targetElement의 관찰을 중지합니다.
+```js
+const io = new IntersectionObserver(callback, options)
+
+io.observe(div) // div element 관찰
+
+io.unobserve(div) // div element 관찰 중지
+
+```
 
 IntersectionObserver.disconnect()
+IntersectionObserver가 관찰하는 모든 요소의 관찰을 중지시킵니다.
+
+```js
+const io = new IntersectionObserver(callback, options)
+
+io.observe(div)
+io.observe(a)
+io.observe(h1)
+
+io.disconnect() // io가 관찰하는 div,a,h1 element 관찰 중지
+```
 
 IntersectionObserver.takerecords()
+IntersectionObserverEntry 객체의 배열을 반환합니다.
+
 
 
 사용예시
@@ -115,11 +139,12 @@ Intersection​ Observer API를 이용하면 지연 로딩을 손쉽게 구현 �
 Infinite Scrolling
 ---
 
-
-
-사용가능 브라우저..
----
-
+무한 스크롤 역시 IntersectionObserver를 이용하면 편하게 구현할 수 있습니다.
+아래 예제는 감시자를 스크롤에 끝부분에 두고 스크롤이 끝에 도달할때 마다 새로운 데이터를 불러오도록 하였습니다.
+<iframe height="265" style="width: 100%;" scrolling="no" title="abBMXoY" src="https://codepen.io/lss3070/embed/abBMXoY?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/lss3070/pen/abBMXoY'>abBMXoY</a> by lss3070
+  (<a href='https://codepen.io/lss3070'>@lss3070</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 
 
