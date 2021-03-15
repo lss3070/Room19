@@ -141,7 +141,7 @@ Infinite Scrolling
 
 무한 스크롤 역시 IntersectionObserver를 이용하면 편하게 구현할 수 있습니다.
 아래 예제는 감시자를 스크롤에 끝부분에 두고 스크롤이 끝에 도달할때 마다 새로운 데이터를 불러오도록 하였습니다.
-<iframe height="265" style="width: 100%;" scrolling="no" title="abBMXoY" src="https://codepen.io/lss3070/embed/abBMXoY?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="500" style="width: 100%;" scrolling="no" title="abBMXoY" src="https://codepen.io/lss3070/embed/abBMXoY?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/lss3070/pen/abBMXoY'>abBMXoY</a> by lss3070
   (<a href='https://codepen.io/lss3070'>@lss3070</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
