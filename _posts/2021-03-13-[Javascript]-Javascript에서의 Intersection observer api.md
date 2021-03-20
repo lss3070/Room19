@@ -85,7 +85,8 @@ ex)
 IntersectionObserver의 메소드
 ---
 
-IntersectionObserver.observe(targetElement) targetElement를 관찰합니다.
+`IntersectionObserver.observe(targetElement)`
+ targetElement를 관찰합니다.
 ```js
 const io = new IntersectionObserver(callback, options)
 
@@ -94,7 +95,7 @@ const div = document.querySelector('div')
 io.observe(div) // div element 관찰
 ```
 
-IntersectionObserver.unobserve(targetElement)
+`IntersectionObserver.unobserve(targetElement)`
 targetElement의 관찰을 중지합니다.
 ```js
 const io = new IntersectionObserver(callback, options)
@@ -105,7 +106,7 @@ io.unobserve(div) // div element 관찰 중지
 
 ```
 
-IntersectionObserver.disconnect()
+`IntersectionObserver.disconnect()`
 IntersectionObserver가 관찰하는 모든 요소의 관찰을 중지시킵니다.
 
 ```js
@@ -118,7 +119,7 @@ io.observe(h1)
 io.disconnect() // io가 관찰하는 div,a,h1 element 관찰 중지
 ```
 
-IntersectionObserver.takerecords()
+`IntersectionObserver.takerecords()`
 IntersectionObserverEntry 객체의 배열을 반환합니다.
 
 
