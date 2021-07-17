@@ -9,16 +9,17 @@ tags:
 
 ---
 
-React에서는 16.8버전부터 Hook이라는 기능이 추가되었다.~~
+React에서는 16.8버전부터 Hook이라는 기능으로써 함수형 컴포넌트에서도 상태관리를 도와주는 훅,렌더링 후 작업을
+설정하는 훅등 기존 함수형 컴포넌트에서 할 수 없었던 다양한 작업들을 할 수 있게 도와주는 기능이다.
 
 
 useState
 ---
 제일 기본적인 useState부터 알아보죠
-useState는 함수 컴포넌트안에서 state를 사용할 수 있게 해준다.
-useState는 넘겨주는 인자로 state의 초기값을 설정해 줄 수 있다.
-state는 클래스와 달리 객체일 필요는 없고, 숫자 타입과 문자 타입을 가질 수 있다.
-useState는 state 변수, 이 변수를 갱신할 수 있는 함수 두가지를 반환한다.
+useState는 함수 컴포넌트안에서 state를 사용할 수 있게 해줍니다.
+useState는 넘겨주는 인자로 state의 초기값을 설정해 줄 수 있으며
+state는 클래스와 달리 객체일 필요는 없고, 숫자 타입과 문자 타입을 가질 수 있습니다
+useState는 state 변수, 이 변수를 갱신할 수 있는 함수 두가지를 반환합니다.
 ```js
 const App = () => {
    const [count, setCount] = useState(1);
@@ -142,9 +143,6 @@ input에서의 value는 state 자체를 줘서 input안에서의 값을 유지�
 
 
 
-
-
-
 useMemo
 ---
 
@@ -205,6 +203,38 @@ ref는 특정 element 현상을 발생시키는 역할을 합니다. 예컨데 i
 
 ```js
 
+const App = () => {
+  const [currentText,setCurrentText]= useState('');
+  const [textList,setTextString]= useState([]);
 
+  const inputText = useRef();
+
+  const add =(useEffect(event)=>{
+    const newList = textList.slice();
+    newList.push(currentText);
+    setTextString(newList);
+
+    setCurrentText('');
+    inputText.current.focus();
+  },[currentText,textList]);
+  
+  const change =(useEffect(event)=>{
+    setCurrentText(event.target.value);
+  },[]);
+
+
+  return(
+    <div>
+      <input type='text' ref={inputText} onChange={change} value={currentText}>
+      <button onClick={add}>추가</button>
+      {textList.length>0&&textList.forEach((item)=>{
+        <div>{item}</div>
+      })
+      };
+    </div>
+  )
+}
 ```
+
+
 
