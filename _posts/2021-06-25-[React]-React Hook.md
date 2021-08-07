@@ -17,7 +17,7 @@ useState
 ---
 제일 기본적인 useState부터 알아보죠
 useState는 함수 컴포넌트안에서 state를 사용할 수 있게 해줍니다.
-useState는 넘겨주는 인자로 state의 초기값을 설정해 줄 수 있으며
+useState는 넘겨주는 인자로 state의 초기값을 설정해 줄 수 있으며4
 state는 클래스와 달리 객체일 필요는 없고, 숫자 타입과 문자 타입을 가질 수 있습니다
 useState는 state 변수, 이 변수를 갱신할 수 있는 함수 두가지를 반환합니다.
 ```js
