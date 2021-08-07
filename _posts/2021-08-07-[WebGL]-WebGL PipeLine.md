@@ -23,7 +23,6 @@ WebGL Pipe Line
 ===
 
 대부분의 그래픽 카드는 그래픽 처리 과정을 3차원 사영, 윈도 클리핑, 셰이딩, 렌더링 등으로 나누어 각각의 하부 모듈에서 병렬적으로 수행한다.
-<출처:위키백과>
 
 ![pipeline]({{site.url}}/img/javascript/webgl/webgl_pipeline.jpeg)
 
