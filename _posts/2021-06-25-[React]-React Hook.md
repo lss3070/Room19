@@ -6,7 +6,9 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-
+    Javascript
+    React
+    React Hook
 ---
 
 React에서는 16.8버전부터 Hook이라는 기능으로써 함수형 컴포넌트에서도 상태관리를 도와주는 훅,렌더링 후 작업을

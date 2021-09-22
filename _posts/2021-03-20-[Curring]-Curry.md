@@ -6,7 +6,7 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-
+    Javascript
 ---
 
 currying이란

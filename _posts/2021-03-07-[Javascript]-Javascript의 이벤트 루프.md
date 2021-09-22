@@ -6,7 +6,7 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-
+    Javascript
 ---
 
 자바스크립트는 싱글 스레드 기반의 언어입니다.싱글 스레드는 한번에 하나의 호출스택을 사용하며 이러한 방식은 한번에 하나의 동작만을 사용할 수 있음을 의미합니다.

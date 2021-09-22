@@ -6,9 +6,10 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-    -이벤트 위임
-    -이벤트 캡처링
-    -이벤트 버블링
+    Javascript
+    이벤트 위임
+    이벤트 캡처링
+    이벤트 버블링
 ---
 
 

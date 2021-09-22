@@ -6,7 +6,7 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-
+    Javascript
 ---
 
 Intersection Observer API는 타겟 요소와 상위 요소 또는 최상위 document 의 viewport 사이의 intersection 내의 변화를 비동기적으로 관찰하는 방법입니다.

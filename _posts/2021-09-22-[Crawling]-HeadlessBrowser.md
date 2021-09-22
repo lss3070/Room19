@@ -1,12 +1,13 @@
 ---
-title: "[Crawling] Playwright를 이용한 크롤링(1)"
+title: "[Crawling] Playwright를 이용한 크롤링_1"
 subtitle: "Crawling"
 layout: post
 auther: "Hux"
 header-style: text
 catalog: true
 tags:
-
+    Javascript
+    HeadlessBrowser
 ---
 
 안녕하세요 이직 후에 처음으로 쓰는 포스팅이네요

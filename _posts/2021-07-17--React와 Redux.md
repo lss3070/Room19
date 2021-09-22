@@ -6,7 +6,8 @@ auther: "Hux"
 header-style: text
 catalog: true
 tags:
-
+    Javascript
+    React
 ---
 
 들어가며...
