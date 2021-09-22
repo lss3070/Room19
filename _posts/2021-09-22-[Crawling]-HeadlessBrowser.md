@@ -167,5 +167,8 @@ page.waitForTimeout
 
 참고
 ===
+https://playwright.dev/
+
 https://blog.logrocket.com/playwright-vs-puppeteer/
+
 https://ui.toast.com/weekly-pick/ko_20210818
