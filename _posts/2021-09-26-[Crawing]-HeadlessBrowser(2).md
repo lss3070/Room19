@@ -215,8 +215,6 @@ interface MailGetOutput{
 }
 
 app.message('test',async ({message,say,event,payload})=>{
-
-
     const result = await doing();
     result.state? await say(result.link!) : await say(result.error!);
 });
