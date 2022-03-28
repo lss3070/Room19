@@ -34,7 +34,7 @@ const CommentList=()=>{
 ```
 인라인 함수를 정의하는 대신 화살표 함수로 정의할 수 있습니다.
 
-```ts
+```tsx
 const CommentList=()=>{
     const [comments,setComments]=useState([]);
 
@@ -87,7 +87,7 @@ lodash호출하려는 함수는 래핑할 수 있습니다.
 ex)함수 호출 후 10초동안 함수를 호출하지 않았다면 10초가 지난 후 제일 마지막에 호출된 함수만 실행됨.
 
 
-```ts
+```tsx
 import debouce from 'lodash.debounce'
 const SearchComment = ()=>{
 
@@ -108,7 +108,7 @@ const SearchComment = ()=>{
 
 # 3. map의 key값을 인덱스로 사용하지 않기
 리스트를 렌더링할 때 map의 인덱스를 컴포넌트의 키로 사용되는 걸 종종 볼 수 있습니다.
-```ts
+```tsx
     {
         comments.map((comment,index)=>{
             <Comment {...comment} key={index}>
@@ -120,7 +120,7 @@ Index를 key값으로 사용하게 되면 DOM요소를 식별하는 데 사용�
 
 이러한 상황을 방지하기 위해 id를 지정해주는 모듈을 사용하는것이 좋습니다.
 
-```ts
+```tsx
 import shortid from  "shortid";
 {
     comments.map((comment,index)=>{
@@ -143,7 +143,7 @@ import shortid from  "shortid";
 useState의 초기값을 설정하기 위해 컴포넌트에 props를 초기값으로 넣는 경우가 많습니다.
 이런 경우 state가 update되었음에도 화면은 변하지 않는 문제가 발생할 수 있습니다.
 
-```ts
+```tsx
 const Component = (props)=>{
     const [applyCoupon,setApplyCoupon]=useState(props.applyCoupon);
 
@@ -157,7 +157,7 @@ const Component = (props)=>{
 ```
 해결방법으로는 구성요소에 직접 props를 넣어주던가 useEffect에 setState를 넣어 값을 변경해주면 됩니다.
 
-```ts
+```tsx
 const Component = (props)=>{
     const [applyCoupon,setApplyCoupon]=useState();
 
@@ -177,7 +177,7 @@ const Component = (props)=>{
 
 # 5. DOM에서 펼침연산자(Spread operator) 사용
 알수 없는 html속성을 추가하기 때문에 DOM요소에 펼칩 연산자를 쓰는건 피해야합니다.
-```ts
+```tsx
 const CommentText=props=>{
     return(
         <div {...props}>
@@ -187,7 +187,7 @@ const CommentText=props=>{
 }
 ```
 펼침 연산자를 쓰는 대신 특정 속성을 설정합시다.
-```ts
+```tsx
 const CommentText = props => {
     return (
       <div specificAttr={props.specificAttr}>
@@ -213,9 +213,7 @@ const CommentText = props => {
 
 다음은 웹워커를 사용하지 않는 코드입니다.
 
-```ts
-
-
+```tsx
 export const Posts=posts=>{
 
     const [sortedPost,setSortedPost]=useState();
@@ -252,7 +250,7 @@ export const Posts=posts=>{
 
 다음은 웹워커를 사용하여 정렬을 처리하는 코드입니다.
 
-```ts
+```tsx
 import { useWorker } from "@koale/useworker";
 
 const sort=()=>{
@@ -317,8 +315,7 @@ useMemo,useCallback,React.memo가 있습니다.
 useMemo은 메모이제이션된 값을 반환해줍니다.
 useMemo는 유효성 배열이 변하면 useMemo안에 함수를 실행해서 재계산해서 결과값을 반환해줍니다.
 
-```ts
-
+```tsx
 const factorial = (n) => {
   if (n < 0) return -1;
   if (n === 0) return 1; 
@@ -354,7 +351,7 @@ useMemo 자체적으로 메모리가 필요하므로 모든 기능을 과도하�
 참조가 아닌 값으로 전달되기 때문에 구성요소가 다시 리렌더링 되더라도 항상 동일하게 유지가 됩니다.
 
 아래 예제를 살펴보죠
-```ts
+```tsx
 const BigMovieComponent=(movieId)=>{
 
     const movieTitleAsString = getMovieTitle(movieId); 
@@ -384,7 +381,7 @@ React 컴포넌트 내에서 함수가 선언되었다면 그 함수는 컴포�
 기존 함수를 계속 반환해줍니다.
 
 아래 예제를 살펴보죠
-```ts
+```tsx
     const ListContainer =({searchQuery})=>{
         const itemClick=useCallback((event)=>{
             console.log('click')
@@ -405,7 +402,7 @@ ListComponent의 메모이제이션을 중단하지 않습니다.
 
 
 잘못된 사례
-```ts
+```tsx
 const Component=()=>{
    const onHandleClick = useCallback(() => {
        console.log('click');
@@ -434,7 +431,7 @@ React.memo를 이용해 children의 상태값이 바뀌더라도 새로 변경�
 Child들은 렌더링이 되지 않도록 만들어봅시다.
 
 Parent
-```ts
+```tsx
 export const Parent=()=>{
     const [children,setChildren]=useState([
         {
@@ -468,7 +465,7 @@ export const Parent=()=>{
 ```
 
 Child
-```ts
+```tsx
 export const Child=React.memo({child})=>{
     <>
         <div>이름: {name}</div>
