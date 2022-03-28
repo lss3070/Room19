@@ -16,7 +16,7 @@ React에서의 인라인 함수는 React가 비교하여 검사를 수행할 때
 또한 화살표 함수는 jsx속성에서 사용되는 경우 각 렌더링에서 함수의 새 인스턴스를 만듭니다.
 이건 가비지 컬렉터에 대해 많은 작업을 생성할 수 있습니다.
 
-```js
+```jsx
 const CommentList=()=>{
     const [comments,setComments]=useState([]);
 
