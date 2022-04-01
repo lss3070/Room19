@@ -90,7 +90,7 @@ Demo: [React 17은 외부 이벤트 핸들러를 일괄 처리하지 않습니�
 [링크를 들어가서 확인해보자!!](https://codesandbox.io/s/morning-sun-lgz88?file=/src/index.js, "google link")
 
 
-## 배치 원하지 않을 때
+### 배치 원하지 않을 때
 
 대부분의 경우에는 배치가 안전한 절차이지만 몇몇 코드는 state를 변경후 즉시 DOM으로부터 값을 가져오는 것에 의존한다.
 이전경우 `flushSync`함수를 사용함으로써 배치를 피해갈 수 있다.
@@ -118,13 +118,13 @@ SSR Support for Suspense
 SSR은 서버상의 React Component를 이용하여 HTML을 만들고 유저에게 보낼 수 있도록 해준다.
 SSR은 유저로 하여금 js 번들이 로딩되고 실행되기 전에 페이지의 컨텐츠를 볼 수 있게 도와준다.
 
-react에서의 ssr은 항상 아래와 같은 순서로 작동되어왔다.
+**react에서의 ssr은 항상 아래와 같은 순서로 작동되어왔다.**
 
 ```
-서버에서 전체 애플리케이션에서 사용할 데이터를 가져온다.
-그 후, 서버에서 애플리케이션을 HTML로 렌더링한 후 응답(response)로 보낸다.
-그 후, 클라이언트에서 JavaScript를 불러온다.
-그 후, 클라이언트에서 서버에서 생성된 HTML에 JavaScript 로직을 연결시킨다.
+_서버에서 전체 애플리케이션에서 사용할 데이터를 가져온다._
+_그 후, 서버에서 애플리케이션을 HTML로 렌더링한 후 응답(response)로 보낸다._
+_그 후, 클라이언트에서 JavaScript를 불러온다._
+_그 후, 클라이언트에서 서버에서 생성된 HTML에 JavaScript 로직을 연결시킨다._
 ```
 
 여기서 핵심은 각각의 단계가 다음단계 시작 전에 전체 어플리케이션에 대한 작업을 완료 하여야한다는 점이다.
@@ -151,11 +151,11 @@ React 18버전에선 `Suspense`를 통해 어플리케이션을 작고 독립적
 하지만 18버전에서는 `waterfall방식`으로 진행이 되었던 부분들 작업을 쪼개 전체 어플리케이션으로 하는 것이 아닌 각각의 부분들로 단계를 수행 할 수 있게 하는 것이다.
 
 
-react 18에서는 Suspense를 이용하여 두개의 주요 SSR기능들을 제공한다.
-```
-서버에서 HTML 스트리밍 형식으로 전달. 
-클라이언트에서 선택적 하이드레이션
-```
+**react 18에서는 Suspense를 이용하여 두개의 주요 SSR기능들을 제공한다.**
+
+_서버에서 HTML 스트리밍 형식으로 전달. _
+_클라이언트에서 선택적 하이드레이션_
+
 
 이 기능들이 어떤 역할을 하고 어떤문제를 해결하는지 아래를 살펴보자.
 
@@ -297,19 +297,16 @@ React에선 이 동작을 기록하고 클릭한 것이 더 급하기 때문에 
 이게 동작하기 위해선
 
 
-나쁜 예시
-```
-특정 데이터 fetch에 대한 것이 아닙니다.
-suspense는 데이터 불러오기 작업과 뷰레이어를 결합해 주지 않는다.
-UI 상에서 로딩상태를 표시 할 수 있도록 조정하는 것을 돕지만 이는 네트워크 로직을 react에 종속 시키는 것은 아니다.
-```
+**좋은 예시**
+_데이터 fetch라이브러리_
+_의도적으로 설계된 로딩상태_
+_경쟁상태(race condition)을 피할 수 있도록 돕는다._
 
-유용한 예시
-```
-데이터 fetch라이브러리
-의도적으로 설계된 로딩상태
-경쟁상태(race condition)을 피할 수 있도록 돕는다.
-```
+
+**나쁜 예시**
+_suspense는 데이터 불러오기 작업과 뷰레이어를 결합해 주지 않는다._
+_UI 상에서 로딩상태를 표시 할 수 있도록 조정하는 것을 돕지만 이는 네트워크 로직을 react에 종속 시키는 것은 아니다._
+
 
 새로운 hook 기능
 ---
@@ -381,8 +378,9 @@ function App() {
 이를 해결하기 위해 React팀은 `useInsertionEffect Hook`을 도입했습니다.
 `useInsertionEffect`는 `useLayoutEffect`와 매우 유사하지만 DOM노드의 참조에 액세스 할 수 있습니다.
 
-즉 스타일 지정 규칙만 삽입 할 수 있으며 <style>주요 사용 사례는 SVG와 같은 전역 DOM 노드를 삽입하는 <defs>입니다. 이것은 클라이언트 측 태그 생성에만 관련이 있으므로 서버에선 실행이 되지 않습니다.
-- react에선 internalSource는 props,state,context같은 것이 있다.
+즉 스타일 지정 규칙만 삽입 할 수 있으며 `<style>`주요 사용 사례는 SVG와 같은 전역 DOM 노드를 삽입하는 `<defs>`입니다. 이것은 클라이언트 측 태그 생성에만 관련이 있으므로 서버에선 실행이 되지 않습니다.
+
+** react에선 internalSource는 props,state,context같은 것이 있다. ** 
 
 ```tsx
 function useCSS(rule) {
@@ -404,7 +402,7 @@ function Component() {
 ### useSyncExternalStore
 
 externalStore란 외부의 mutable한 store를 뜻하며 주로 redux store,swr store를 뜻한다.
-즉 useSyncExternalStore는 외부의 store에서 변화를 감지하여 store의 상태를 업데이트 시켜주는 hook이다.
+즉 `useSyncExternalStore`는 외부의 store에서 변화를 감지하여 store의 상태를 업데이트 시켜주는 hook이다.
 
 
 #### Tearing
@@ -433,9 +431,9 @@ useSyncExternalStore(
 const selectedField = useSyncExternalStore(store.subscribe, () => store.getSnapshot().selectedField);
 ```
 
-useSyncExternalStore hook은 두가지 기능을 사용합니다.
-콜백함수를 등록하는 'subscribe'함수
-'getSnapshot'은 구독된 값이 마지막 시간 이후 변경되었는지 렌더링되었는지 확인되는데 사용이 됩니다.
+`useSyncExternalStore hook`은 두가지 기능을 사용합니다.
+콜백함수를 등록하는 `subscribe`함수
+그리고 `getSnapshot`은 구독된 값이 마지막 시간 이후 변경되었는지 렌더링되었는지 확인되는데 사용이 됩니다.
 값은 문자열이나 숫자와 같이 변경할 수 없는 값이거나 캐시/메모리화된 객체이여야 합니다.
 
 
