@@ -14,7 +14,7 @@ tags:
 ---
 
 안녕하세요 어제부로 리액트 18버전이 정식 버전으로 바뀌었습니다.👏👏👏
-사실 18버전으로 업데이트 된지는 꽤 되었지만 업데이트 사항 복기겸 작성해 보겠습니다.
+사실 알파 버전으로 업데이트 된지는 꽤 되었지만 업데이트 사항 복기겸 작성해 보겠습니다.
 
 동시성
 ---
@@ -299,42 +299,135 @@ UI 상에서 로딩상태를 표시 할 수 있도록 조정하는 것을 돕지
 경쟁산태란 무엇인가?
 위키백과에 따르면 `공유 자원에 대해 여러개의 프로세스가 동시에 접근을 시도 할 때 접근의 타이밍이나 순서 등이 결과값에 영향을 줄 수 있는 상태`이라고 나와있다.
 
-
-
 suspense는 data fecthing 라이브러리의 워터폴 현상을 막아준다.
 
 참고:https://github.com/reactwg/react-18/discussions/37
-공식문서 참조..
-
 
 # 새로운 hook 기능
 ---
 
 1. useTransition
-(suspense와 함께 덜중요한 상태의 업데이트를 늦추는 것이 가능.)
-suspense를 지원해주는 훅이며
 
+startTransitionAPI는 업데이트를 긴급 및 비 긴급으로 분류하는데 도움이 됩니다.클릭,선택등과 같이 즉각적인
+응답이 필요한 이벤트는 긴급 이벤트로 처리되어야 하며, 검색 결과 표시, 텍스트 강조 표시 등과 같이 즉각적이지 않을 것으로 예상되는
+기타 업데이트는 전환 또는 긴급하지 않은 것으로 표시 될 수 있습니다.
+또한 isPending를 제공하여 사용자가 기다리는 동안 Loading 표시할 수 있습니다.
+
+<iframe height="500" style="width: 100%;" scrolling="no" title="abBMXoY" src="https://codepen.io/lss3070/pen/ZEvJpow?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/lss3070/pen/abBMXoY'>abBMXoY</a> by lss3070
+  (<a href='https://codepen.io/lss3070'>@lss3070</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 2. useDeferredValue
 
-3. useId
-- server에서 생성한 react tree와 client에서 그린 react treetkdldp hydration이 원할하게 할 수 있도록 일관적인 id가 생성된다.
+말그대로 어떤 변수의 지연된 값을 반환하는 hook이며 사용자들이 입력을 기반으로 즉시 렌더링하거나 데이터 조회를 기다려야 할 때 인터페이스를 반응적으로 유지하는데 사용됩니다.
+debounce 개념이며 debounce을 하기 위해 외부 라이브러리를 사용했어야했는데 내장 기능으로 포함이 되어서 이제 내부함수로 사용할 수 있겠네요.
+여기서 timeoutMs은 지연되는 시간을 뜻하며 timeoutMS에 따라 최대 2초 동안 “뒤처져서” 백그라운드에서 현재 텍스트로 렌더링 할 수 있습니다.
 
-*hydration이란? 서버사이드 렌더링으로 만들어진 정적인 html이 state로 동적인 상태변화를 넣어주는 작업
-CSR일 경우에는 상관이 없지만 SSR인 경우에는 사용을 고려해야한다.
-Rehydration을 검색!!
+<iframe height="500" style="width: 100%;" scrolling="no" title="abBMXoY" src="https://codepen.io/lss3070/pen/XWVeVrE?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/lss3070/pen/abBMXoY'>abBMXoY</a> by lss3070
+  (<a href='https://codepen.io/lss3070'>@lss3070</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+
+3. useId
+- useId API는 서버 렌더링 및 hydration중에 안정된 ID를 생성하여 불일치를 방지합니다.
+- server에서 생성한 react tree와 client에서 그린 react treetkdldp hydration이 원할하게 할 수 있도록 일관적인 id가 생성된다.
+서버렌더링 콘텐츠 이외의 콘텐츠들을 글로벌카운팅됩니다.
+```tsx
+import React, { useId } from "react";
+
+function App() {
+  const id = useId();
+  return (
+    <>
+      <div className="field">
+        <label htmlFor={`${id}-name`} >Name</label>
+        <input type="text" name="name" id={`${id}-name`} />
+      </div>
+      <div className="field">
+        <label htmlFor={`${id}-address`} >Address</label>
+        <input type="text" aria-labelledBy={`${id}-name ${id}-address`} />
+      </div>
+      <div className="field">
+        <label htmlFor={`${id}-passport`} >Do you have passport?</label>
+        <input type="checkbox" name="passport" id={`${id}-passport`} />
+      </div>
+      </>
+  );
+}
+```
 
 4. useInsertionEffect
 - react의 컴포넌트가 그려지는 순서를 보면 render -> useLayoutEffect-> commit -> useEffect
 
-일반적으로 useLayoutEffect는 
-를 사용할 때 ref에 대한 접근을 할 수가 없다.
+일반적으로 useLayoutEffect를 사용할 때 ref에 대한 접근을 할 수가 없다.
 
-기본적으로 react를 개발할 때 css library를 개발하지 않는 한 이 hook을 쓸 필요는 없다고 한다.
+이를 해결하기 위해 React팀은 useInsertionEffect Hook을 도입했습니다.
+useInsertionEffect는 useLayoutEffect와 매우 유사하지만 DOM노드의 참조에 액세스 할 수 있습니다.
+
+즉 스타일 지정 규칙만 삽입 할 수 있으며 <style>주요 사용 사례는 SVG와 같은 전역 DOM 노드를 삽입하는 <defs>입니다. 이것은 클라이언트 측 태그 생성에만 관련이 있으므로 서버에선 실행이 되지 않습니다.
+- react에선 internalSource는 props,state,context같은 것이 있다.
+```tsx
+function useCSS(rule) {
+  useInsertionEffect(() => {
+    if (!isInserted.has(rule)) {
+      isInserted.add(rule);
+      document.head.appendChild(getStyleForRule(rule));
+    }
+  });
+  return rule;
+}
+
+function Component() {
+  let className = useCSS(rule);
+  return <div className={className} />;
+}
+```
 
 5. useSyncExternalStore
 
-- react에선 internalSource는 props,state,context같은 것이 있다.
+externalOStre란 외부의 mutable한 store를 뜻하며 주로 redux store,swr store를 뜻한다.
+즉 useSyncExternalStore는 외부의 store에서 변화를 감지하여 store의 상태를 업데이트 시켜주는 hook이다.
 
 
+Tearing
+---
+-Tearing은 시각의 불일치를 뜻합니다.즉 UI에 동일한 상태에 대한 여러 값이 표시됩니다.
+React18 버전 이전에는 이 문제가 발생하지 않았습니다.
+하지만 React 18이후에는 동시 렌더링을 통해 렌더링 중 React가 일시 중지되기 때문에 이 문제가 발생 할 수 있습니다.
+
+여기에서 구성요소들은 색상을 가져오기 위해 외부 저장소에 액세스 해야합니다.동기 렌더링을 사용하면 UI에서 렌더링되는 생상이 일관됩니다.
+
+![externalstore_1]({{site.url}}/img/eighteenUpdate/useSyncExternalStore_1.png)
+동시 렌더링에서는 처음 가져온 색상이 파란색입니다. react를 반응시키면 스토어가 빨간색 값을 사용해서 렌더링을 계속합니다. 이로 인해 UI에 불일치가 발생하며 이를 Tearing이라고 합니다.
+![externalstore_2]({{site.url}}/img/eighteenUpdate/useSyncExternalStore_2.png)
+이 문제를 해결하기 위해 React팀은 useMutable을 추가 했습니다.
+훅을 통해 가변 외부 소스에서 안전하고 효율적으로 읽을 수 있습니다.
+그러나 작업 그룹
+
+```tsx
+import {useSyncExternalStore} from 'react';
+
+useSyncExternalStore(
+  subscribe: (callback) => Unsubscribe
+  getSnapshot: () => State
+) => State
+
+const selectedField = useSyncExternalStore(store.subscribe, () => store.getSnapshot().selectedField);
+```
+
+useSyncExternalStore hook은 두가지 기능을 사용합니다.
+콜백함수를 등록하는 'subscribe'함수
+'getSnapshot'은 구독된 값이 마지막 시간 이후 변경되었는지 렌더링되었는지 확인되는데 사용이 됩니다.
+값은 문자열이나 숫자와 같이 변경할 수 없는 값이거나 캐시/메모리화된 객체이여야 합니다.
+
+
+
+
+
+
+
+
+//https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api
 
