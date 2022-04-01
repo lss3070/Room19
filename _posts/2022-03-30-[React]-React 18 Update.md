@@ -18,7 +18,7 @@ tags:
 
 동시성
 ---
-react 18에서의 가장 중요한 추가 사항은 동시성입니다. 동시성은 그 자체로 기능이 아니며 React가 동시에 여러 버전의 UI를 준비할 수 있도록 해주는 배후 매커니즘입니다.동시성은 구현 세부사항으로도 생각할 수 있으며 react에서의 우선 순위 대기열 및 다중 버퍼링과
+react 18에서의 가장 중요한 추가 사항은 `동시성`입니다. `동시성`은 그 자체로 기능이 아니며 React가 동시에 여러 버전의 UI를 준비할 수 있도록 해주는 배후 매커니즘입니다.동시성은 구현 세부사항으로도 생각할 수 있으며 react에서의 우선 순위 대기열 및 다중 버퍼링과
 같은 내부 구현에서 정교한 기술을 사용합니다.
 
 이전의 대부분의 개발자들이 메모이제이션이나 Debounc(디바운스) 기법을 사용해서 사용자의 경험을 개선시키고자 하겠지만, 이는 주된 문제해결을 뒤로 미뤄두는 것일 뿐입니다. 렌더링은 여전히 길을 가로막는 큰 트럭과 같은 존재입니다.
@@ -27,18 +27,18 @@ react 18에서의 가장 중요한 추가 사항은 동시성입니다. 동시�
 특정 최대 빈도수로 업데이트를하거나 사용자가 타이핑을 멈추고 나서만 목록을 업데이트 합니다. 하지만 성능이 안좋은 곳에서는 여전히 버벅거릴 것이며 Debounc(디바운스)이나 Throttle(쓰로틀)이 최적의 방식은 아닙니다.
 (버벅거리는 이유는 렌더링이 시작되게 되면 중간에 중단을 할 수가 없기 때문입니다.)
 
-Concurrent React의 주요 속성은 렌더링이 중단 가능하다는 것입니다!!이전의 React버전에서는 동일하게 업데이트가 중단되지 않는 단일 동기 트랜잭션으로 트랙잭션입니다. 이렇게 되면 렌더링을 시작하면 사용자가 화면에서 결과를 볼 수 있을때까지 어떤 것도 업데이트를 중단 할 수 없습니다.
-하지만 동시렌더링에서는 동기 렌더링처럼 항상 그렇지 않습니다.React가 업데이트 렌더링을 시작한 후 중간에 일시 중지한 다음에도 나중에 계속 할 수 있습니다. 진행 중인 렌더링을 완전히 포기할 수도 있습니다.React는 렌더링이 중단되더라도 UI가 일관되게 표시됩니다.
+Concurrent React의 주요 속성은 렌더링이 중단 가능하다는 것입니다!!이전의 React버전에서는 동일하게 업데이트가 중단되지 않는 `단일 동기 트랙잭션`입니다. 이렇게 되면 렌더링을 시작하면 사용자가 화면에서 결과를 볼 수 있을때까지 어떤 것도 업데이트를 중단 할 수 없습니다.
+하지만 `동시렌더링`에서는 `동기 렌더링`처럼 항상 그렇지 않습니다.React가 업데이트 렌더링을 시작한 후 중간에 일시 중지한 다음에도 나중에 계속 할 수 있습니다. 진행 중인 렌더링을 완전히 포기할 수도 있습니다.React는 렌더링이 중단되더라도 UI가 일관되게 표시됩니다.
 이를 위해 전체 트리가 평가되면 끝까지 DOM 변형을 수행하기를 기다립니다. 이 기능을 통해 React에서는 메인 스레드를 차단하지 않고 백그라운드에서 새 화면을 준비할 수 있습니다. 
 
-동시성이란 결국 여러 작업들을 처리 할 수 있도록 작업들을 작은 조각들로 나누는 방법이고 react에서 이제 하려고 하는것입니다.
+`동시성`이란 결국 여러 작업들을 처리 할 수 있도록 작업들을 작은 조각들로 나누는 방법이고 react에서 이제 하려고 하는것입니다.
 즉 렌더링 과정을 더 작은 작업들로 나누고 스케줄러를 통해서 각 작업들에 중요도에 따른 우선순위를 정합니다.(Time-slicing)라고 부릅니다.
 
 concurrent react에 대해서 간단하게 정리해보면
 ```
-* 메인 스레드를 블록하지 않는다.
-* 동시에 여러 작업들을 처리하고 우선 순위에 따라 각 작업들 간에 전환할 수 있다.
-* 최종 결과로 확정하지 않고도 부분적으로 트리를 렌더링 할 수 있다.
+ 메인 스레드를 블록하지 않는다.
+ 동시에 여러 작업들을 처리하고 우선 순위에 따라 각 작업들 간에 전환할 수 있다.
+ 최종 결과로 확정하지 않고도 부분적으로 트리를 렌더링 할 수 있다.
 ```
 
 
@@ -48,17 +48,17 @@ concurrent react에 대해서 간단하게 정리해보면
 추가된 기능들에 대해 알아보죠
 
 automatic batching for fewer renders
----
+===
 
-## 배치란 무엇인가?
+### 배치란 무엇인가?
 
-react에서의 배치는 여러개의 상태 업데이트를 한 번의 리렌더링으로 묶는 작업을 말합니다.
+react에서의 `배치`는 여러개의 상태 업데이트를 한 번의 리렌더링으로 묶는 작업을 말합니다.
 만약 하나의 클릭 함수에 동일한 state값을 업데이트 하는 함수가 여러개일 경우에는 하나하나 일일히 업데이트를 하고 리렌더링을 하는 경우에는 자원을 너무 많이 소모하게 되는 이런 비효율성 때문에 함수가 항상 끝마치고나면 리렌더링이 되었습니다.
 
 ## 이전의 배치
 
 하지만 이과정은 일반적이지 않습니다. 예를들어 데이터를 외부 소스로 부터 가져외 아래 보이는 handleClick 함수 내부에서 state를 업데이트 하고자하면 react 업데이트를 배치하지 않고 두개의 독립적인 업데이트를 수행했다.
-(여기서 일관적이지 못한 이유는 React가 브라우저 이벤트의 업데이트에만 배치를 해왔었고 이럴 경우에는 fetch 이벤트의 이벤트 핸들링이 완료되고 난 후 state를 업데이트하기 때문에 적용이 되지 않았다.)
+(여기서 일관적이지 못한 이유는 React가 브라우저 이벤트의 업데이트에만 `배치`를 해왔었고 이럴 경우에는 fetch 이벤트의 이벤트 핸들링이 완료되고 난 후 state를 업데이트하기 때문에 적용이 되지 않았다.)
 ```tsx
 function App() {
   const [count, setCount] = useState(0);
@@ -82,18 +82,18 @@ function App() {
   );
 }
 ```
-Demo: [React 17 does NOT batch outside event handlers](https://codesandbox.io/s/trusting-khayyam-cn5ct?file=/src/index.js, "google link")
+Demo: [React 17은 외부 이벤트 핸들러를 일괄 처리하지 않습니다 .](https://codesandbox.io/s/trusting-khayyam-cn5ct?file=/src/index.js, "google link")
 (콘솔에 렌더가 두 번 찍히는 것을 보자)
 
-하지만 18버전에서는 모든 업데이트들이 어디서 왔는가에 상관없이 자동으로 배치가된다!!
+**하지만 18버전에서는 모든 업데이트들이 어디서 왔는가에 상관없이 자동으로 배치가된다!!**
 
-**[링크를 들어가서 확인해보자!!](https://codesandbox.io/s/morning-sun-lgz88?file=/src/index.js, "google link")**
+[링크를 들어가서 확인해보자!!](https://codesandbox.io/s/morning-sun-lgz88?file=/src/index.js, "google link")
 
 
 ## 배치 원하지 않을 때
 
 대부분의 경우에는 배치가 안전한 절차이지만 몇몇 코드는 state를 변경후 즉시 DOM으로부터 값을 가져오는 것에 의존한다.
-이전경우 flushSync함수를 사용함으로써 배치를 피해갈 수 있다.
+이전경우 `flushSync`함수를 사용함으로써 배치를 피해갈 수 있다.
 
 ```tsx
 import { flushSync } from 'react-dom'; // Note: react-dom, not react
@@ -382,6 +382,7 @@ useInsertionEffect는 useLayoutEffect와 매우 유사하지만 DOM노드의 참
 
 즉 스타일 지정 규칙만 삽입 할 수 있으며 <style>주요 사용 사례는 SVG와 같은 전역 DOM 노드를 삽입하는 <defs>입니다. 이것은 클라이언트 측 태그 생성에만 관련이 있으므로 서버에선 실행이 되지 않습니다.
 - react에선 internalSource는 props,state,context같은 것이 있다.
+
 ```tsx
 function useCSS(rule) {
   useInsertionEffect(() => {
@@ -439,11 +440,11 @@ useSyncExternalStore hook은 두가지 기능을 사용합니다.
 
 
 
-
-
-
 참고
-https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api
-https://github.com/reactwg/react-18/discussions/37
-https://github.com/reactwg/react-18/discussions/21
-
+[https://reactjs.org/blog/2022/03/29/react-v18.html]https://reactjs.org/blog/2022/03/29/react-v18.html
+[https://github.com/reactwg/react-18/discussions/37]https://github.com/reactwg/react-18/discussions/37
+[https://github.com/reactwg/react-18/discussions/21]https://github.com/reactwg/react-18/discussions/21
+[https://blog.saeloun.com/2021/12/09/react-18-useid-api]https://blog.saeloun.com/2021/12/09/react-18-useid-api
+[https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api]https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api
+[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api]https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api
+[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api]https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api
