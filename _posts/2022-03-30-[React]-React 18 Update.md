@@ -429,10 +429,9 @@ useSyncExternalStore(
 const selectedField = useSyncExternalStore(store.subscribe, () => store.getSnapshot().selectedField);
 ```
 
-`useSyncExternalStore hook`은 두가지 기능을 사용합니다.
+`useSyncExternalStore hook`은 두가지 기능을 사용합니다.   
 
-콜백함수를 등록하는 `subscribe`함수
-
+콜백함수를 등록하는 `subscribe`함수   
 그리고 `getSnapshot`은 구독된 값이 마지막 시간 이후 변경되었는지 렌더링되었는지 확인되는데 사용이 됩니다.
 값은 문자열이나 숫자와 같이 변경할 수 없는 값이거나 캐시/메모리화된 객체이여야 합니다.
 
