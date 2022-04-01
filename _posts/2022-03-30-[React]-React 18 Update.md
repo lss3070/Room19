@@ -49,8 +49,8 @@ Concurrent React의 주요 속성은 렌더링이 중단 가능하다는 것입�
 이제 React 18버전에서 어떤 기능이 새로 생겼는지
 추가된 기능들에 대해 알아보죠
 
-automatic batching for fewer renders
-===
+Automatic Batching for Fewer Renders
+---
 
 ### 배치란 무엇인가?
 
@@ -120,14 +120,17 @@ SSR Support for Suspense
 SSR은 서버상의 React Component를 이용하여 HTML을 만들고 유저에게 보낼 수 있도록 해준다.
 SSR은 유저로 하여금 js 번들이 로딩되고 실행되기 전에 페이지의 컨텐츠를 볼 수 있게 도와준다.
 
-**react에서의 ssr은 항상 아래와 같은 순서로 작동되어왔다.**
+##### react에서의 ssr은 항상 아래와 같은 순서로 작동되어왔다.
 
-```
-_서버에서 전체 애플리케이션에서 사용할 데이터를 가져온다._
-_그 후, 서버에서 애플리케이션을 HTML로 렌더링한 후 응답(response)로 보낸다._
-_그 후, 클라이언트에서 JavaScript를 불러온다._
-_그 후, 클라이언트에서 서버에서 생성된 HTML에 JavaScript 로직을 연결시킨다._
-```
+
+**_서버에서 전체 애플리케이션에서 사용할 데이터를 가져온다.**
+
+**그 후, 서버에서 애플리케이션을 HTML로 렌더링한 후 응답(response)로 보낸다.**
+
+**그 후, 클라이언트에서 JavaScript를 불러온다.**
+
+**그 후, 클라이언트에서 서버에서 생성된 HTML에 JavaScript 로직을 연결시킨다.**
+
 
 여기서 핵심은 각각의 단계가 다음단계 시작 전에 전체 어플리케이션에 대한 작업을 완료 하여야한다는 점이다.
 하지만 이러한 방법은 어플리케이션의 몇몇 일부분만 다른 부분보다 느릴 수 있기에 작지 않는 어플리케이션에 있어 효율적이지 못하다.
@@ -156,6 +159,7 @@ React 18버전에선 `Suspense`를 통해 어플리케이션을 작고 독립적
 ##### react 18에서는 Suspense를 이용하여 두개의 주요 SSR기능들을 제공한다.
 
 **1.서버에서 HTML 스트리밍 형식으로 전달.**
+
 **2.클라이언트에서 선택적 하이드레이션**
 
 
@@ -333,7 +337,7 @@ React에선 이 동작을 기록하고 클릭한 것이 더 급하기 때문에 
 
 말그대로 어떤 변수의 지연된 값을 반환하는 hook이며 사용자들이 입력을 기반으로 즉시 렌더링하거나 데이터 조회를 기다려야 할 때 인터페이스를 반응적으로 유지하는데 사용됩니다.
 `debounce`개념이며 `debounce`을 하기 위해 외부 라이브러리를 사용했어야했는데 내장 기능으로 포함이 되어서 이제 내부함수로 사용할 수 있겠네요.
-여기서 `timeoutMs`은 지연되는 시간을 뜻하며 `timeoutMS`에 따라 최대 2초 동안 “뒤처져서” 백그라운드에서 현재 텍스트로 렌더링 할 수 있습니다.
+여기서 `timeoutMs`은 지연되는 시간을 뜻하며 `timeoutMS`에 따라 최대 2초 동안 뒤처져서 백그라운드에서 현재 텍스트로 렌더링 할 수 있습니다.
 
 <iframe height="300" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/lss3070/embed/XWVeVrE?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/lss3070/pen/XWVeVrE">
@@ -374,7 +378,8 @@ function App() {
 ### useInsertionEffect
 
 
-- react의 컴포넌트가 그려지는 순서를 보면 `render -> useLayoutEffect-> commit -> useEffect`
+react의 컴포넌트가 그려지는 순서를 보면 `render -> useLayoutEffect-> commit -> useEffect`
+이순서대로 그려진다.
 
 일반적으로 useLayoutEffect를 사용할 때 ref에 대한 접근을 할 수가 없다.
 
@@ -383,7 +388,7 @@ function App() {
 
 즉 스타일 지정 규칙만 삽입 할 수 있으며 `<style>`주요 사용 사례는 SVG와 같은 전역 DOM 노드를 삽입하는 `<defs>`입니다. 이것은 클라이언트 측 태그 생성에만 관련이 있으므로 서버에선 실행이 되지 않습니다.
 
-** react에선 internalSource는 props,state,context같은 것이 있다. ** 
+**react에선 internalSource는 props,state,context같은 것이 있다.** 
 
 ```tsx
 function useCSS(rule) {
@@ -421,7 +426,6 @@ React18 버전 이전에는 이 문제가 발생하지 않았습니다.
 ![externalstore_2]({{site.url}}/img/react/eighteenUpdate/useSyncExternalStore_2.png)
 이 문제를 해결하기 위해 React팀은 useMutable을 추가 했습니다.
 훅을 통해 가변 외부 소스에서 안전하고 효율적으로 읽을 수 있습니다.
-그러나 작업 그룹
 
 ```tsx
 import {useSyncExternalStore} from 'react';
@@ -435,18 +439,22 @@ const selectedField = useSyncExternalStore(store.subscribe, () => store.getSnaps
 ```
 
 `useSyncExternalStore hook`은 두가지 기능을 사용합니다.
+
 콜백함수를 등록하는 `subscribe`함수
+
 그리고 `getSnapshot`은 구독된 값이 마지막 시간 이후 변경되었는지 렌더링되었는지 확인되는데 사용이 됩니다.
 값은 문자열이나 숫자와 같이 변경할 수 없는 값이거나 캐시/메모리화된 객체이여야 합니다.
 
 
 
 
+
 참고
-[https://reactjs.org/blog/2022/03/29/react-v18.html](https://reactjs.org/blog/2022/03/29/react-v18.html)
-[https://github.com/reactwg/react-18/discussions/37](https://github.com/reactwg/react-18/discussions/37)
-[https://github.com/reactwg/react-18/discussions/21](https://github.com/reactwg/react-18/discussions/21)
-[https://blog.saeloun.com/2021/12/09/react-18-useid-api](https://blog.saeloun.com/2021/12/09/react-18-useid-api)
-[https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api](https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api)
-[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api](https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api)
-[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api](https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api)
+
+_[https://reactjs.org/blog/2022/03/29/react-v18.html](https://reactjs.org/blog/2022/03/29/react-v18.html)_
+_[https://github.com/reactwg/react-18/discussions/37](https://github.com/reactwg/react-18/discussions/37)_
+_[https://github.com/reactwg/react-18/discussions/21](https://github.com/reactwg/react-18/discussions/21)_
+_[https://blog.saeloun.com/2021/12/09/react-18-useid-api](https://blog.saeloun.com/2021/12/09/react-18-useid-api)_
+_[https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api](https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api)_
+_[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api](https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api)_
+_[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api](https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api)_
