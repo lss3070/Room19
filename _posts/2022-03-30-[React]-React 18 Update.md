@@ -34,12 +34,12 @@ Concurrent React의 주요 속성은 렌더링이 중단 가능하다는 것입�
 `동시성`이란 결국 여러 작업들을 처리 할 수 있도록 작업들을 작은 조각들로 나누는 방법이고 react에서 이제 하려고 하는것입니다.
 즉 렌더링 과정을 더 작은 작업들로 나누고 스케줄러를 통해서 각 작업들에 중요도에 따른 우선순위를 정합니다.(Time-slicing)라고 부릅니다.
 
-**concurrent react에 대해서 간단하게 정리해보면**
-```
- 메인 스레드를 블록하지 않는다.
- 동시에 여러 작업들을 처리하고 우선 순위에 따라 각 작업들 간에 전환할 수 있다.
- 최종 결과로 확정하지 않고도 부분적으로 트리를 렌더링 할 수 있다.
-```
+##### concurrent react에 대해서 간단하게 정리해보면
+
+**메인 스레드를 블록하지 않는다.**
+**동시에 여러 작업들을 처리하고 우선 순위에 따라 각 작업들 간에 전환할 수 있다.**
+**최종 결과로 확정하지 않고도 부분적으로 트리를 렌더링 할 수 있다.**
+
 
 
 결과적으론 react를 사용하는 방식은 이전과 똑같습니다.prop및 state와 같은 개념은 근복적으로 동일하게 작동이 되며 react는 휴리스틱을 사용하여 업데이트의 급함 정도만 결정하고 몇줄의 코드를 수정해서 사용자가 모든 상호작용에 대해 원하는 사용자의 경험을 얻을 수 있도록 합니다.
@@ -299,12 +299,15 @@ React에선 이 동작을 기록하고 클릭한 것이 더 급하기 때문에 
 
 **좋은 예시**
 _데이터 fetch라이브러리_
+
 _의도적으로 설계된 로딩상태_
+
 _경쟁상태(race condition)을 피할 수 있도록 돕는다._
 
 
 **나쁜 예시**
 _suspense는 데이터 불러오기 작업과 뷰레이어를 결합해 주지 않는다._
+
 _UI 상에서 로딩상태를 표시 할 수 있도록 조정하는 것을 돕지만 이는 네트워크 로직을 react에 종속 시키는 것은 아니다._
 
 
@@ -440,10 +443,10 @@ const selectedField = useSyncExternalStore(store.subscribe, () => store.getSnaps
 
 
 참고
-[https://reactjs.org/blog/2022/03/29/react-v18.html]https://reactjs.org/blog/2022/03/29/react-v18.html
-[https://github.com/reactwg/react-18/discussions/37]https://github.com/reactwg/react-18/discussions/37
-[https://github.com/reactwg/react-18/discussions/21]https://github.com/reactwg/react-18/discussions/21
-[https://blog.saeloun.com/2021/12/09/react-18-useid-api]https://blog.saeloun.com/2021/12/09/react-18-useid-api
-[https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api]https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api
-[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api]https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api
-[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api]https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api
+[https://reactjs.org/blog/2022/03/29/react-v18.html](https://reactjs.org/blog/2022/03/29/react-v18.html)
+[https://github.com/reactwg/react-18/discussions/37](https://github.com/reactwg/react-18/discussions/37)
+[https://github.com/reactwg/react-18/discussions/21](https://github.com/reactwg/react-18/discussions/21)
+[https://blog.saeloun.com/2021/12/09/react-18-useid-api](https://blog.saeloun.com/2021/12/09/react-18-useid-api)
+[https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api](https://blog.saeloun.com/2021/09/09/react-18-introduces-starttransition-api)
+[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api](https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api)
+[https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api](https://blog.saeloun.com/2021/12/30/react-18-usesyncexternalstore-api)
