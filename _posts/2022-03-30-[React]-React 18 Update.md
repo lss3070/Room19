@@ -438,9 +438,7 @@ const selectedField = useSyncExternalStore(store.subscribe, () => store.getSnaps
 
 
 
-
-참고
-
+참고   
 _[https://reactjs.org/blog/2022/03/29/react-v18.html](https://reactjs.org/blog/2022/03/29/react-v18.html)_
 _[https://github.com/reactwg/react-18/discussions/37](https://github.com/reactwg/react-18/discussions/37)_
 _[https://github.com/reactwg/react-18/discussions/21](https://github.com/reactwg/react-18/discussions/21)_
