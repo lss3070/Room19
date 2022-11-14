@@ -7,7 +7,6 @@ header-style: text
 catalog: true
 tags:
     Javascript
-    HeadlessBrowser
 ---
 
 개요
