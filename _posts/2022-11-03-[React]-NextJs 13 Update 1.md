@@ -17,24 +17,24 @@ tags:
 아직까진 정식 버전은 아니고 베타 버전이지만 NextJS에서 몇가지 부분이 바뀌어서 한번 적어보게되엇습니다.
 
 먼저 NexJs 공식 문서상으로는 크게 5가지로 간추려집니다.
-```
-app/Directory - layouts,react server components,streaming기능 추가
-Turbopack - webpack과 비교해서 700배 빠른 모듈 번들러
-New next/image - 지연로딩을 좀 더 빠르게 만들었습니다.
-New next/font - layoutshift 현상이 없어진 자체 호스트 글꼴
-Imporved next/link - link태그 내부에 a태그 간소화
-```
+
+* **app/Directory** - layouts,react server components,streaming기능 추가
+* **Turbopack** - webpack과 비교해서 700배 빠른 모듈 번들러
+* **New next/image** - 지연로딩을 좀 더 빠르게 만들었습니다.
+* **New next/font** - layoutshift 현상이 없어진 자체 호스트 글꼴
+* **Imporved next/link** - link태그 내부에 a태그 간소화
+
 
 자 이제 세세하게 알아보죠!
 
 라우팅 시스템의 변화!
 ---
-NextJS 13에서의 가장 큰 변화인거 같습니다.이전과 같이 파일 시스템 기반의 라우팅을 사용하지만 달라진것이있다면 기존에는 pages폴더를 기반으로 하여 라우팅이 구현 되었지만
-app을 기반으로 해서 바뀐 폴더구조와 다양하게 추가된 예약파일들입니다.
+NextJS 13에서의 가장 큰 변화인거 같습니다. 이전과 같이 파일 시스템 기반의 라우팅을 사용하지만 달라진것이있다면 기존에는 pages폴더를 기반으로 하여 라우팅이 구현 되었지만
+nextjs 13에서는 app 디렉터리를 기반으로 해서 바뀐 구조와 다양하게 추가된 예약파일들입니다.
 
-app폴더는 다음과 같은 기능들을 포함하고 있습니다.
+<!-- app 디렉토리는 다음과 같은 기능들을 포함하고 있습니다.
 
-<!-- ```
+```
 Layouts 이동
 Server Component 이동 // pages폴더에서는 지원이 안돼지만 app폴더에서는 React Server Component 로드된다.
 Streaming 이동
@@ -43,13 +43,13 @@ Support for Data Fecthing 이동
 
 먼저 이전의 라우팅 폴더 구조에 대해 살펴보시죠
 
-![기존 라우팅]({{site.url}}/img/next13/routing-today.avif)
+![기존 라우팅]({{site.url}}/img/react/next13/routing-today.avif)
 
 위 그림과 같이 이전 폴더구조에서는 page기반의 폴더 구조였습니다.
 
 업데이트 된 13버전에서는 라우팅되는 최상위 폴더에 app디렉토리가 존재하며 하위단에 폴더별로 라우팅을 정의해서 사용되어집니다.
 
-![바뀐 라우팅]({{site.url}}/img/next13/routes.png)
+![바뀐 라우팅]({{site.url}}/img/react/next13/routes.png)
 
 이 바뀐 라우팅 시스템과 더불어 많은 예약파일들이 추가되었습니다.바뀐 라우팅 시스템과 예약파일들을 어떻게 쓰이는지 살펴보죠
 
@@ -64,7 +64,7 @@ Support for Data Fecthing 이동
 next/page는 기존의 next/index의 기능과 비슷하다고 보시면 될것 같습니다
 각 라우팅되는 폴더에 기본적으로 page라고 하는 예약파일을 이용하여 경로의 세그먼트를 정의할 수 있습니다.
 
-![next/page]({{site.url}}/img/next13/page.webp)
+![next/page]({{site.url}}/img/react/next13/page.webp)
 
 
 ### next/layout
@@ -100,7 +100,7 @@ export default function RootLayout({ children }: {
 
 루트 레이아웃을 제외한 레이아웃들을 나타냅니다.폴더 내부에 정의된 레이아웃들은 해당 폴더 세그먼트에 적용이 됩니다.
 파일 계층 구조의 레이아웃은 중첩 children이 되고 즉 자식 레이아웃을 래핑할수 있습니다.
-![nesting/layout]({{site.url}}/img/next13/nested-layout.webp)
+![nesting/layout]({{site.url}}/img/react/next13/nested-layout.webp)
 
 ```ts 
 export default function DashboardLayout({
@@ -116,7 +116,7 @@ export default function DashboardLayout({
 app/dashboar/* 세그먼트를 내부에 래핑합니다
 
 두 레이아웃은 아래와 같이 중첩이됩니다.
-![nested-layout]({{site.url}}/img/next13/nested-layouts.png)
+![nested-layout]({{site.url}}/img/react/next13/nested-layouts.png)
 
 
 Route Groups
@@ -131,17 +131,17 @@ Route Groups
 괄호안에 폴더는 url에서 생략이 되며 (marketing) 경로가 내부에 있고 동일한 URL 구조를 공유하더라도 같은 level에 있는(shop)폴더를 추가하여 다른 레이아웃그룹을 만들 수 있습니다.
 ex) (marketing) or (shop)
 
-![route-group-organisation]({{site.url}}/img/next13/route-group-organisation.webp)
+![route-group-organisation]({{site.url}}/img/react/next13/route-group-organisation.webp)
 
 ### 레이아웃에서 특정 세그먼트 선택하는 경우
 account,cart 세그먼트에 특정 레이아웃을 설정하고하 한다면 account,cart 폴더 상위에 (shop)이라는 폴더를 만들어 구분 지을 수 있습니다. 그룹외부의 경로인 checkout은 경로를 공유하지 않습니다.
 
-![route-group-opt-in-layouts]({{site.url}}/img/next13/route-group-opt-in-layouts.webp)
+![route-group-opt-in-layouts]({{site.url}}/img/react/next13/route-group-opt-in-layouts.webp)
 
 ### 여러가지 root 레이아웃 만들기
 여러가지 root layout을 만들려면 최상위의 layout을 제거하고 각경로 그룹안에 파일 layout을 추가하여 줍니다.
 
-![route-group-multiple-root-layouts]({{site.url}}/img/next13/route-group-multiple-root-layouts.webp)
+![route-group-multiple-root-layouts]({{site.url}}/img/react/next13/route-group-multiple-root-layouts.webp)
 
 
 
@@ -157,7 +157,7 @@ template 각 자식에대한 새 인트턴스만을 만듭니다.즉 사용자�
 ```
 
 또한 next/layout과 next/template가 아래와 같이 공존하는 경우에는 next/layout안에 next/template가 존재하게 됩니다.
-![template]({{site.url}}/img/next13/template.webp)
+![template]({{site.url}}/img/react/next13/template.webp)
 
 ```ts
 <Layout>
@@ -168,7 +168,7 @@ template 각 자식에대한 새 인트턴스만을 만듭니다.즉 사용자�
 ### next/head
 디렉토리에서 HTML요소를 수정할 수 있습니다.
 
-![head-file]({{site.url}}/img/next13/head-file.webp)
+![head-file]({{site.url}}/img/react/next13/head-file.webp)
 
 ```ts
 async function getPost(slug) {
@@ -200,7 +200,7 @@ next13버전에서는 Instant Loading States라고하는 새로운 규칙이 도
 Instant Loading States를 사용하면 스켈레톤 및 스피너 같은 로딩 화면을 미리 렌더링 할 수 있습니다.
 
 폴더안에 loading.js를 추가하여 사용합니다.
-![loading-folder]({{site.url}}/img/next13/loading-folder.webp)
+![loading-folder]({{site.url}}/img/react/next13/loading-folder.webp)
 
 app/dashboard/loading.tsx
 ```
@@ -220,7 +220,7 @@ Error Boundaries
 error.js 경로 세그먼트와 그 아래의 자식에 대한 오류 경계를 정의합니댜.특정 오류 정보와 오류 복구를 시도하는 기능을 표시하는데 사용할 수 있습니다.
 
 폴더안에 error.js를 추가하여 사용합니다.
-![error-folder]({{site.url}}/img/next13/error-folder.webp)
+![error-folder]({{site.url}}/img/react/next13/error-folder.webp)
 
 ```ts
 'use client';
@@ -250,7 +250,7 @@ export default function Error({
 
 Error Boundaries는 Client Component여야 합니다.
 동일한 폴더에서 및 error.js내부에 중첩됩니다 (있는 경우). 파일과 그 아래의 모든 자식을 오류 경계로 래핑 하지만 동일한 수준의 레이아웃이나 템플릿은 래핑하지 않습니다.layout.jstemplate.jspage.js
-![error-diagram]({{site.url}}/img/next13/error-diagram.webp)
+![error-diagram]({{site.url}}/img/react/next13/error-diagram.webp)
 
 
 next/font와 next/image의 변화
