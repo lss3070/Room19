@@ -3,7 +3,7 @@ title: "[React] NextJS 13 변경점 (1)"
 subtitle: "React"
 layout: post
 auther: "Hux"
-header-style: text
+header-style: textx
 catalog: true
 tags:
     React
@@ -61,7 +61,7 @@ Support for Data Fecthing 이동
 먼저 기본적으로 구성되는 예약파일들부터 알아보죠
 
 ### next/page
-next/page는 기존의 next/index의 기능과 비슷하다고 보시면 될것 같습니다
+**next/page**는 기존의 **next/index**의 기능과 비슷하다고 보시면 될것 같습니다
 각 라우팅되는 폴더에 기본적으로 page라고 하는 예약파일을 이용하여 경로의 세그먼트를 정의할 수 있습니다.
 
 ![next/page]({{site.url}}/img/react/next13/page.webp)
@@ -79,7 +79,7 @@ Nesting Layout
 ```
 
 #### Root Layout
-RootLayout는 기존의 _app.js이나 _document.js와 같이 최상위 수준에서 모든 경로에 적용이 되며 *Root Layout*을 사용하면
+**RootLayout**는 기존의 _app.js이나 _document.js와 같이 최상위 수준에서 모든 경로에 적용이 되며 **Root Layout**을 사용하면
 서버에서 반환된 초기 HTML을 수정할 수 있습니다.
 html및 body태그를 포함해야합니다.
 
@@ -113,7 +113,7 @@ export default function DashboardLayout({
 ```
 
 위와같이 중첩을 시켜놓으면 (app/layout.js)이 (app/dashboard/layouts.js)를 래핑하고
-app/dashboar/* 세그먼트를 내부에 래핑합니다
+app/dashboard/* 세그먼트를 내부에 래핑합니다
 
 두 레이아웃은 아래와 같이 중첩이됩니다.
 ![nested-layout]({{site.url}}/img/react/next13/nested-layouts.png)
@@ -126,19 +126,19 @@ Route Groups
 
 몇가지 예시를 들어 살펴보죠
 
-### 세그먼트에서 URL 경로에 영향을 받지않고 따로 세그먼트를 구성하는 경우.
+##### 1. 세그먼트에서 URL 경로에 영향을 받지않고 따로 세그먼트를 구성하는 경우.
 
 괄호안에 폴더는 url에서 생략이 되며 (marketing) 경로가 내부에 있고 동일한 URL 구조를 공유하더라도 같은 level에 있는(shop)폴더를 추가하여 다른 레이아웃그룹을 만들 수 있습니다.
 ex) (marketing) or (shop)
 
 ![route-group-organisation]({{site.url}}/img/react/next13/route-group-organisation.webp)
 
-### 레이아웃에서 특정 세그먼트 선택하는 경우
+##### 2.레이아웃에서 특정 세그먼트 선택하는 경우
 account,cart 세그먼트에 특정 레이아웃을 설정하고하 한다면 account,cart 폴더 상위에 (shop)이라는 폴더를 만들어 구분 지을 수 있습니다. 그룹외부의 경로인 checkout은 경로를 공유하지 않습니다.
 
 ![route-group-opt-in-layouts]({{site.url}}/img/react/next13/route-group-opt-in-layouts.webp)
 
-### 여러가지 root 레이아웃 만들기
+##### 3.여러가지 root 레이아웃 만들기
 여러가지 root layout을 만들려면 최상위의 layout을 제거하고 각경로 그룹안에 파일 layout을 추가하여 줍니다.
 
 ![route-group-multiple-root-layouts]({{site.url}}/img/react/next13/route-group-multiple-root-layouts.webp)
@@ -147,16 +147,18 @@ account,cart 세그먼트에 특정 레이아웃을 설정하고하 한다면 ac
 
 ### next/template
 
-next/template는 레이아웃과 해당 하위 세그먼트들을 래핑한다는 점에서 비슷하지만 여러 경로에서 사용되고 상태를 유지하는 next/layout과 달리
-template 각 자식에대한 새 인트턴스만을 만듭니다.즉 사용자가 공유하는 세그먼트 경로로 이동을해도 next/template를 사용하면 다시 리렌더링이 된다는 말입니다.
+**next/template**는 레이아웃과 해당 하위 세그먼트들을 래핑한다는 점에서 비슷하지만 여러 경로에서 사용되고 상태를 유지하는 **next/layout**과 달리
+template 각 자식에대한 새 인트턴스만을 만듭니다.즉 사용자가 공유하는 세그먼트 경로로 이동을해도 **next/template**를 사용하면 다시 리렌더링이 된다는 말입니다.
 
 상태가 유지가 되지않고 새로운 DOM요소로 다시 생성되기 때문에 아래와 같은 상황이 아니면 쓰지 않는걸 추천합니다.
+
 ```
 - CSS또는 애니메이션 라이브러리를 사용하여 애니메이션 시작&종료
 - useEffect 및 useState에 의존하는 기능
 ```
 
-또한 next/layout과 next/template가 아래와 같이 공존하는 경우에는 next/layout안에 next/template가 존재하게 됩니다.
+또한 **next/layout** 과 **next/template**가 아래와 같이 공존하는 경우에는 **next/layout**안에 next/template가 존재하게 됩니다.
+
 ![template]({{site.url}}/img/react/next13/template.webp)
 
 ```ts
@@ -187,17 +189,18 @@ export default async function Head({ params }) {
 }
 ```
 
-head는 특정 태그만 반환할 수 있습니다.
-- <title>
-- <meta>
-- <link>
-- <script>
+**next/head**는 특정 태그만 반환할 수 있습니다.
+
+`<title>`
+`<meta>`
+`<link>`
+`<script>`
 
 
 ### next/loading
 
-next13버전에서는 Instant Loading States라고하는 새로운 규칙이 도입되었습니다.
-Instant Loading States를 사용하면 스켈레톤 및 스피너 같은 로딩 화면을 미리 렌더링 할 수 있습니다.
+next13버전에서는 **Instant Loading States**라고하는 새로운 규칙이 도입되었습니다.
+**Instant Loading States**를 사용하면 스켈레톤 및 스피너 같은 로딩 화면을 미리 렌더링 할 수 있습니다.
 
 폴더안에 loading.js를 추가하여 사용합니다.
 ![loading-folder]({{site.url}}/img/react/next13/loading-folder.webp)
@@ -215,8 +218,8 @@ export default function Loading() {
 error.js는 Next.js 13은 어플리케이션의 오류를 처리하는데 도움이 되는 새로운 파일 규칙들을 도입했습니다.
 React Error Boundaries를 기반으로 하는 이 규칙을 사용하면 하위 트리 내에서 오류가 발생하는 경우 대체 화면을 표시 할 수 있습니다.
 
-Error Boundaries
-===
+#### Error Boundaries
+
 error.js 경로 세그먼트와 그 아래의 자식에 대한 오류 경계를 정의합니댜.특정 오류 정보와 오류 복구를 시도하는 기능을 표시하는데 사용할 수 있습니다.
 
 폴더안에 error.js를 추가하여 사용합니다.
@@ -249,22 +252,22 @@ export default function Error({
 ```
 
 Error Boundaries는 Client Component여야 합니다.
-동일한 폴더에서 및 error.js내부에 중첩됩니다 (있는 경우). 파일과 그 아래의 모든 자식을 오류 경계로 래핑 하지만 동일한 수준의 레이아웃이나 템플릿은 래핑하지 않습니다.layout.jstemplate.jspage.js
+동일한 폴더에서 및 error.js내부에 중첩됩니다 (있는 경우). 파일과 그 아래의 모든 자식을 오류 경계로 래핑 하지만 동일한 수준의 레이아웃이나 템플릿은 래핑하지 않습니다.`layout.js` `template.js` `page.js`
 ![error-diagram]({{site.url}}/img/react/next13/error-diagram.webp)
 
 
 next/font와 next/image의 변화
 ---
 둘의 공통적인 추가사항으로는 기존 로딩퍼포먼스를 저해하던 요소들을 개선하여 
-layoutShift가 방지가 되었다는것이다. 
-layoutshift란 이미지나 폰트같은 컨텐츠가 느리게 로딩이 되어 화면 레이아웃이 순간적으로 밀리게 되는 현상을 말합니다.
+**LayoutShift**가 방지가 되었다는것이다. 
+**Layoutshift**란 이미지나 폰트같은 컨텐츠가 느리게 로딩이 되어 화면 레이아웃이 순간적으로 밀리게 되는 현상을 말합니다.
 
 
-next/image같은 경우에는 이전에는 이미지 파일이 크거나 이럴경우에는 로드되는 시간이 느린데
+**next/image**같은 경우에는 이전에는 이미지 파일이 크거나 이럴경우에는 로드되는 시간이 느린데
 이미지가 화면상에 그려지지않고 로드 되는순간에는 이미지가 자동으로 최적화가되어서 이미지가 줄어들었다가 화면상에
-이미지가 로드되었을 때 다시 밀려내려와서 Layoutshift현상이 발생했다 그래서 이걸 방지하기 위해 width와 height값을 고정으로 설정을 해 두었지만 nextJS의 13버전에서는 이러한 부분들이 해결이 되었다.
+이미지가 로드되었을 때 다시 밀려내려와서 **Layoutshift**현상이 발생했다 그래서 이걸 방지하기 위해 width와 height값을 고정으로 설정을 해 두었지만 nextJS의 13버전에서는 이러한 부분들이 해결이 되었다.
 
-next/font는 nextjs자체적으로 google font가 내장이 되어 이제 cdn링크가 필요없어지게 되었다.
+**next/font**는 nextjs자체적으로 google font가 내장이 되어 이제 cdn링크가 필요없어지게 되었다.
 이전에는 _document.js 같이 cdn링크를 사용하여 google font를 가져왔습니다.
 
 ```ts
