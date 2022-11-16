@@ -1,6 +1,6 @@
 ---
 title: "[React] NextJS 13 변경점 (1)"
-subtitle: "React"
+subtitle: "NextJs"
 layout: post
 auther: "Hux"
 header-style: textx
