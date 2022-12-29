@@ -9,15 +9,13 @@ tags:
     Performance
 ---
 
-개요
----
 이번 포스트에서는 웹사이트의 성능측정에 관해 알아보겠습니다.
 
 ## 성능 측정을 하는 이유?
 
 사용자가 페이지를 방문한 후, 아무런 요청을 하지 않고 떠나는 비율을 이탈률이라고 합니다.
 
-![lcp-image]({{site.url}}/img/react/next13/pageload.png)
+![lcp-image]({{site.url}}/img/web/pageload.png)
 위 그래프를 보면 알 수 있듯이, 페이지 로딩속도에 대한 이탈률을 보면 로딩시간이
 3초일 때 이탈률 32%,5초 90%,6초 106%이런식으로 계속 늘어납니다.
 아무리 괜찮은 페이지더라도 사용자가 이용하지않으면 아무 쓸모가 없어지겠죠.
@@ -39,7 +37,8 @@ tags:
 
 먼저 첫번째 기준인 LCP부터 살펴보죠
 
-## 1. LCP(Largest Contentful Paint)
+### 1. LCP(Largest Contentful Paint)
+---
 
  Core Web Vitals중 가장 성능을 크게 좌지우지 하는건 LCP입니다. 
  LCP는 크롬 개발자 도구의 Lighthouse 점수의 25%를 차지하며 웹에서 보이는 화면의 가장 큰 부분을 사용자 디바이스에 표시하고 그려지는 시간을 표시합니다. 공식문서 상에선 사용자들에게 좋은 경험을 제공하기 위해선 페이지가 로드된 후 2.5초 이내에 LCP가 발생하여야 한다고 합니다.
@@ -48,8 +47,8 @@ tags:
 
 아래는 lcp의 잘못된 예시입니다.
 
-![lcp-image]({{site.url}}/img/react/next13/lcp.avif)
-![lcp2-image]({{site.url}}/img/react/next13/lcp2.avif)
+![lcp-image]({{site.url}}/img/web/lcp.avif)
+![lcp2-image]({{site.url}}/img/web/lcp2.avif)
 
 
 위 두 이미지에서는 콘텐츠가 로드 되면서 최대 요소들이 변경이 됩니다. 첫번째 예시에서는 새 콘텐츠가 
@@ -57,7 +56,7 @@ DOM에 추가 되어 최대 요소가 변경이 되었고,두번째 예시에서
 
 그렇다면 좋은 예시는 어떤 것 일까요?
 
-![lcp3-image]({{site.url}}/img/react/next13/lcp2.avif)
+![lcp3-image]({{site.url}}/img/web/lcp2.avif)
 위의 그림에선 가장 큰 요소가 렌더 된 후에도 다른 요소들이 계속 들어와 렌더가 되더라도 처음 렌더된 요소가 변경되지 않음을 확인 할 수 있습니다.
 
 ### LCP의 원인과 해결 방법
@@ -72,15 +71,16 @@ DOM에 추가 되어 최대 요소가 변경이 되었고,두번째 예시에서
     - 간단한 방법으론 SSR를 사용한다.
     - Javascript 최적화
 
-## 2. CLS
+### 2. CLS
+---
  Core Web Vitals 성능의 15%를 차지하는 CLS는 중요한 지표로 자리잡았습니다.
  페이지 로드 단계에서 레이아웃은 크고작은 모든 이동을 측정하며 페이지에서 레이아웃과정이 일어나게 되면 다시 paint과정과 composite과정이 다시 일어나게 됩니다.
  이렇게 되면 불필요한 렌더링도 일어나게 되고 무엇보다 다른 요소들이 밀리는 layout shifht현상이 발생하게 됩니다.
 
- ![lcp3-image]({{site.url}}/img/react/next13/cls.png)
+ ![lcp3-image]({{site.url}}/img/web/cls.png)
 
 
-### CLS를 개선시키기 위한 방법은?
+#### CLS를 개선시키기 위한 방법은?
 
 - 이미지 및 비디오 요소에 항상 크기 속성을 포함하거나 CSS 가로 세로 비율 상자와 같은 방식으로 필요한 공간을 미리 확보하세요. 
 이러한 접근 방식을 사용하면 이미지가 로드되는 동안 브라우저가 문서에 올바른 양의 공간을 할당할 수 있습니다. 
@@ -92,7 +92,8 @@ unsized-media 기능 정책을 사용하여 기능 정책을 지원하는 브라
 상태에서 상태로 컨텍스트와 연속성을 제공하는 방식으로 애니메이션 전환을 수행하는 것이 좋습니다.
 
 
-## 3. FID(First Input Delay)
+### 3. FID(First Input Delay)
+---
 FID는 사용자가 웹페이지에 처음입력하고 이벤트 핸들러가 반응하기까지의 시간을 측정합니다.
 사용자가 이벤트를 요청한 경우 js엔진을 점유하고 있는 메인스레드에서 다른 작업이 진행중이면
 해당 다른 작업이 끝나야 사용자가 요청한 이벤트를 실행 할 수 있습니다.
@@ -100,7 +101,7 @@ FID의 성능 최적화를 하기 위해선 100ms 미만으로 유지해야 됩�
 
 간단하게 예시를 살펴보면
 
-![lcp3-image]({{site.url}}/img/react/next13/fid2.svg)
+![lcp3-image]({{site.url}}/img/web/fid2.svg)
 
 위 차트에선 네트워크 요청을 수행하고 해당리소스가 다운로드 완료한 후 메인 스레드에서 처리되는 페이지를
 그려준 것입니다.FCP와 TTI 사이에 긴 시간이 들어가는 3가지 작업이 있습니다.
@@ -114,32 +115,28 @@ FID의 성능 최적화를 하기 위해선 100ms 미만으로 유지해야 됩�
 - 요청 수를 낮게 유지하고 전송 크기를 작게 유지
 
 
-# 상황에 맞는 성능측정 및 개선
+## 상황에 맞는 성능측정 및 개선
 
 성능을 측정하고 개선하는것 자체가 시간이 들어가고 깊게 파고들면 개발에 대한 생산성을 오히려 떨어트릴 수 있기 때문에
 해당 웹어플리케이션의 성격에 맞는 성능 개선요소에 신경을 쓰는 것이 중요합니다.
 
 간단하게 두가지 예시를 살펴보면
 
-## 3D화면을 보여주는 웹어플리케이션
+**3D화면을 보여주는 웹어플리케이션**
 - 3D 어플리케이션의 경우 사용자와의 인터렉션이 많기 때문에 사용자 인터랙션에 따른 해당 어플리케이션의
 즉각적인 반응 그리고 렌더링한 3D 모델을 끊기지 않고 계속 렌더링을 해줘야 하기 때문에 메모리 관리가 중요합니다.
 
-## 위키페이지
+**위키페이지**
 - 위키의 목적은 사용자들에게 정보를 제공하는 목적이 크기 때문에 처음 화면에 들어갔을때 지연되는 시간없이 바로 사용자들에게 데이터를 보여줘야되기 때문에 초기 렌더속도가 중요한 요소입니다.
 
 
 
 
 
-출처
+출처  
+[https://testguild.com/front-end-performance-guide/](https://testguild.com/front-end-performance-guide/)  
+[https://crystallize.com/blog/frontend-performance-measuring-and-kpis](https://crystallize.com/blog/frontend-performance-measuring-and-kpis)  
+[https://web.dev/i18n/ko/cls/](https://web.dev/i18n/ko/cls/)  
+[https://web.dev/i18n/ko/lcp/](https://web.dev/i18n/ko/lcp/)  
+[https://web.dev/i18n/ko/fid/](https://web.dev/i18n/ko/fid/)  
 
-https://testguild.com/front-end-performance-guide/
-
-https://crystallize.com/blog/frontend-performance-measuring-and-kpis
-
-https://web.dev/i18n/ko/cls/
-
-https://web.dev/i18n/ko/lcp/
-
-https://web.dev/i18n/ko/fid/
