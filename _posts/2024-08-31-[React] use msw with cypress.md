@@ -1,6 +1,6 @@
 ---
-title: "[React] MSW와 Cypress 같이써보기"
-subtitle: "React"
+title: "Cypress와 MSW 충돌 해결: Intercept 동작시키기"
+subtitle: "MSW,Cypress"
 layout: post
 auther: "Hux"
 header-style: text
